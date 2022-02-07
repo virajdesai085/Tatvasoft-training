@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 <link rel="stylesheet" href="~/css/Prices.css" asp-append-version="true" />
 
 <!--BACKGROUND-->
@@ -38,120 +34,19 @@
           <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
         </li>
         <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-controller="Home" asp-action="#">Become a Helper</a>
+          <a class="nav-link text-light" aria-current="page" asp-controller="Home" asp-action="ServiceProvider">Become a Helper</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 </div>
+
 <!-- Login Regestration  page-->  
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel">Login to your account</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-2">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email id" aria-describedby="emailHelp">
-          </div>
-          <div class="mb-2">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="mb-2 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-          </div>
-          <button type="submit" class="Log-in w-100">Login</button>
-        </form>
-      </div>
-      <div class="modal-footer Login-footer p-0 m-0">
-        <label class="text-center w-100 color-gradiant pb-0 mb-0" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Forget Password?</label>
-        <label class="text-center w-100 pb-0 mb-0">Don't have an account?<label class="ps-2 color-gradiant" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Create an</label></label>
-        <label  class="text-center w-100 color-gradiant" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal"> Account</label>
-      </div>
-    </div>
-  </div>
+    @Html.Partial("Login")
 </div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2">Forget Password</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-2">
-            <input type="email" class="form-control" id="exampleInputPassword2" placeholder="Email id">
-          </div>
-          <button type="submit" class="Log-in w-100">Send</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <label  class="text-center w-100 color-gradiant">Login Now</label>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header d-flex flex-column">
-        <div class="w-100 d-flex align-items-center justify-content-center">
-          <h2>Create New Account</h2>
-        </div>
-        <div class="d-flex align-items-center">
-          <div class="separator-border me-2"></div>
-          <img src="~/image/separator.png">
-          <div class="separator-border ms-2"></div>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="row mb-3">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col">
-            <input type="text" class="form-control" placeholder=" Email Address" aria-label="Email Address">
-          </div>
-          <div class="col">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text ps-1 pe-1" id="addon-wrapping">+49</span>
-              <input type="text" class="form-control ps-1" placeholder="Mobile Number" aria-label="Username" aria-describedby="addon-wrapping">
-            </div>
-          </div>
-        </div> 
-        <div class="row">
-          <div class="col">
-            <input type="password" class="form-control" placeholder="Password" aria-label="Password">
-          </div>
-          <div class="col">
-            <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password">
-          </div>
-        </div> 
-        <div class="mt-2 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-        </div>
-        <div class="d-flex align-items-center justify-content-center pt-2">
-          <button class="Log-in pt-2 ps-3 pe-3 pb-2">Register</button>
-        </div>
-      </div>
-      <div class="modal-footer w-100 align-items-center justify-content-center">
-        <label>Already registered? <span class="color-gradiant">Login now</span></label>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!--MAIN BODY-->
   <img class="image-fluid price-image" src="~/image/prices-banner.png">
