@@ -1,0 +1,64 @@
+﻿@model Helperland.Models.User
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"> 
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Login to your account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @using (Html.BeginForm("Login" , "Home" , FormMethod.Post))
+        {
+            <form>
+              <div class="mb-2">
+                <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" placeholder="Email id" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-2">
+                <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="mb-2 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+              </div>
+              <button type="submit" class="Log-in w-100">Login</button>
+            </form>
+        }
+      </div>
+      <div class="modal-footer Login-footer p-0 m-0">
+        <a class="text-center w-100 color-gradiant pb-0 mb-0" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Forget Password?</a>
+        <label class="text-center w-100 pb-0 mb-0">Don't have an account?<a class="ps-2 color-gradiant" asp-controller="Home" asp-action="CreateAccount" >Create an</a></label>
+        <a  class="text-center w-100 color-gradiant" asp-controller="Home" asp-action="CreateAccount"> Account</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">Forget Password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @using (Html.BeginForm("ForgetPassword" , "Home" , FormMethod.Post))
+        {
+            <form>
+               <div class="mb-2">
+                 <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword2" placeholder="Email id">
+               </div>
+               <button type="submit" class="Log-in w-100">Send</button>
+            </form>  
+        }
+      </div>  
+      <div class="modal-footer">
+        <label  class="text-center w-100 color-gradiant">Login Now</label>
+      </div>
+     </div>
+  </div>
+</div>
+
+

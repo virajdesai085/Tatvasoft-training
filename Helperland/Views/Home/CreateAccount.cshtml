@@ -1,0 +1,150 @@
+﻿@model Helperland.Models.User
+<link rel="stylesheet" href="~/css/Prices.css" asp-append-version="true" />
+<!--BACKGROUND-->
+<div class="background" id="top">
+
+<!--NAVBAR-->	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+      <img src="~/image/logo-small.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Book now</a>
+        </li>
+        <li class="nav-item text-center color-border ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
+        </li>
+        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
+        </li>
+        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<!-- Login Regestration  page-->  
+@Html.Partial("Login")
+
+@using (Html.BeginForm("CreateAccount" , "Home" ,FormMethod.Post))
+{
+<div class="modal-dialog modal-dialog-centered" asp-action="CreateAccount">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-column">
+        <div class="w-100 d-flex align-items-center justify-content-center">
+          <h2>Create New Account</h2>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="separator-border me-2"></div>
+          <img src="~/image/separator.png">
+          <div class="separator-border ms-2"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col">
+            <input asp-for="FirstName" type="text" class="form-control" placeholder="First name" aria-label="First name">
+          </div>
+          <div class="col">
+            <input asp-for="LastName" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <input asp-for="Email" type="text" class="form-control" placeholder=" Email Address" aria-label="Email Address">
+          </div>
+          <div class="col">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text ps-1 pe-1" id="addon-wrapping">+49</span>
+              <input asp-for="Mobile" type="text" class="form-control ps-1" placeholder="Mobile Number" aria-label="Username" aria-describedby="addon-wrapping">
+            </div>
+          </div>
+        </div> 
+        <div class="row">
+          <div class="col">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+          </div>
+          <div class="col">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password">
+          </div>
+        </div> 
+        <div class="mt-2 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pt-2">
+          <button type="submit" class="Log-in pt-2 ps-3 pe-3 pb-2">Register</button>
+        </div>
+      </div>
+      <div class="modal-footer w-100 align-items-center justify-content-center">
+        <label>Already registered? <span class="color-gradiant">Login now</span></label>
+      </div>
+    </div>
+  </div>
+}
+
+<!--FOOTER-->
+<div class="footer container-fluid d-flex pb-5">
+  <div class="d-flex arrow-background align-items-center mt-5 ms-4">
+    <a href="#top"><img src="~/image/newsletter-arrow.png"></a>
+  </div>
+  <div class="pt-5 footer-news-letter d-flex flex-column justify-content-center">
+    <h6 class="news-letter pb-2 text-center">GET OUR NEWSLETTER</h6>
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+      <input class="email-input py-2" type="email" placeholder="YOUR EMAIL">
+      <div class="submit">Submit</div>
+    </div>
+  </div>
+  <div class="d-flex  align-items-center">
+    <img class="img-fluid pe-3 d-xs-none" src="~/image/pink-clock.png">
+  </div>
+
+</div>
+<div class="footer-navbar px-5 py-4 d-flex justify-content-between align-items-center flex-lg-row flex-column">
+  <img class="mx-lg-4 ms-4 mb-lg-0 mb-3" src="~/image/logo-small.png">
+  <ul class=" d-flex flex-lg-row gap-lg-4 gap-0 pe-lg-5 me-lg-5 text-center align-items-center flex-column ">
+    <li class="mb-lg-0 mb-2">
+      <a asp-action="Index" asp-controller="Home">HOME</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a asp-action="About" asp-controller="Home">ABOUT</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+       TESTIMONIALS
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a asp-action="FAQ" asp-controller="Home">FAQs</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      INSURANCE POLICY
+    </li>
+    <li class="mb-lg-0 mb-2">
+      IMPRESSUM
+    </li>
+  </ul>
+  <div class="social-media">
+    <img class="me-2 ps-4 " src="~/image/facebook.png">
+    <img src="~/image/instagram.png">
+  </div>
+</div>
+<div class="d-flex flex-column privacy-faq pb-3">
+  <div class="footer-line"></div>
+  <div class="text-center pt-3">©2018 Helperland. All rights reserved.     Terms and Conditions  |  Privacy Policy</div>
+</div>
