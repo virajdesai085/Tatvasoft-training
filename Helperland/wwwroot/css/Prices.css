@@ -1,0 +1,65 @@
+/*--------Font Family--------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+*{font-family: 'Roboto', sans-serif;}
+/*---background image*/
+.background{background-color: #525252; height: auto;}
+/*-----TOP-PART-------*/
+nav li{max-width: 100%; font-size: 17px;}
+.color-border{border: 1px solid #fff; border-radius: 80px; padding: 0 18px;}
+.color{ background-color: #29626d; }
+.price-image{width: 100%;}
+/*------------ LOG IN REGISTRATION FORMS -------------*/
+.Log-in{ text-align: center; border: 1px solid #fff;	background-color:  #006072; border-radius: 100px; color: #fff;  padding: 10px 0;}
+.Login-footer{ font-size: 16px; height: auto; }
+.color-gradiant{ color: #6eabef; }
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+/*-----MAIN BODY PART----*/
+.body{ width: 100%; }
+.h1-title{font-size: 36px; color: #4f4f4f;  font-weight: medium;}
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+.separator-p{font-size: 18px; color: #646464;}
+/*--------ONE TIME------*/
+.one-time{border: 1px solid #b0c9ce; max-width: 553px; width: 100%; height: 304px;}
+.h2-one-time{background-color: #1d7a8c; font-size: 28px; line-height: 59px;}
+.euro-20{ font-size: 48px; color: #646464; }
+#hr{font-size: 30px;}
+.one-time-content{ font-size: 16px; color: #646464; }
+.line{ background-color: #dcdcdc; width: 84.6%; height: 1px; margin-left: 7.7%;}
+/*--------EXTRA SERVICES----------*/
+.h3-title{ font-size: 36px; font-weight: 500; color: #4f4f4f; }
+.circle{ line-height: 108px; justify-content: center; border: 1px solid #b0c9ce; width: 108px; height: 108px; border-radius: 50%; }
+.grid-1 > *{ flex: 1 1 50%; }
+.grid-p{ font-size: 16px; color: #646464; }
+.grid-minutes{ font-size: 18px; color: #1d7a8c; font-weight: bold; }
+/*----------WHAT WE INCLUDE IN CLEANING---------*/
+.include{ background-color: #f6f6f6; width: 100%; height: auto; }
+.h4-title{font-size: 36px; color: #4f4f4f;}
+.h5-title{font-size: 20px; color: #4f4f4f;}
+.grid-content{ font-size: 16px; color: #4f4f4f; }
+/*---------WHY HELPERLAND----------*/
+.best-cleaner{ width: 100%; }
+.left-part{ max-width: 350px; width: 100%;}
+.right-part{ max-width: 350px; width: 100%; }
+.h6-title{ font-size: 20px; color: #646464; }
+.why-p{ font-size: 14px; color: #646464; }
+.best-cleaning-service{ max-width: 329px; width: 100%; max-height: 236px; height: 100%; align-content: center; }
+/*----------FOOTER----------*/
+.footer{background-color: #fff;}
+.footer-arrow{border-radius: 10px;  border: 1px solid; background-color: #525252;}
+.newsletter{font-size: 18px; font-weight: bold; color: #353548;}
+.email-input{border-radius: 35px; font-size: 14px; color: #565656; padding: 0px 100px 0px 25px;  box-shadow: none; border: 1px solid #565656}
+.submit{color: #ffffff; padding: 10px 22px; background: #ff7b6d; border-radius: 35px; font-size: 14px;}
+.footer-news-letter{width: 100%;}
+.arrow-background{ border: 1px solid #525252; background-color: #525252; border-radius: 100%; max-height: 40px; padding: 0 10px; max-width: 40px; }
+.footer-navbar{font-size: 14px; background-color: #111111; height: auto;}
+ul li{list-style: none; color: #f1f1f1; font-size: 14px;}
+ul li a{ text-decoration: none; color: #f1f1f1; }
+.footer-line{ border: 1px solid; background-color: #424242; width: 84.6%; margin-left: 7.7%; }
+.privacy-faq{background-color: #111111; color: #9ba0a3; font-size: 14px;}
+
+/*----------MEDIA QUERIES---------*/
+@media (max-width: 992px){ .grid-1 > *{flex: 1 1 50%;} }
+
+@media (min-width: 1024px){ .grid-1 > *{ flex: 1 1 1% } }
+
+@media (max-width: 768px){ .grid-1 > *{flex: 1 1 50%} }

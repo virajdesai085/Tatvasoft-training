@@ -1,0 +1,54 @@
+/*--------Font Family--------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+*{font-family: 'Roboto', sans-serif;}
+/*---background image*/
+.background{background-color: #525252; height: auto;}
+/*-----TOP-PART-------*/
+nav li{max-width: 100%; font-size: 17px;}
+.color-border{border: 1px solid #fff; border-radius: 80px; padding: 0 18px;}
+.color{ background-color: #29626d; }
+.price-image{width: 100%;}
+/*------------ LOG IN REGISTRATION FORMS -------------*/
+.Log-in{ text-align: center; border: 1px solid #fff;	background-color:  #006072; border-radius: 100px; color: #fff;  padding: 10px 0;}
+.Login-footer{ font-size: 16px; height: auto; }
+.color-gradiant{ color: #6eabef; }
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+/*-----MAIN BODY PART----*/
+.h1-title{font-size: 36px; color: #4f4f4f;  font-weight: medium;}
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+.grid-p{  font-size: 16px; color: #4f4f4f; }
+.mail-p{ color: #4f4f4f; font-size: 19px; }
+.line{ background-color: #dcdcdc; width: 73.1%; height: 2px; margin-left: 13.5%;}
+.h2-title{ font-size: 24px; color: #4f4f4f; font-weight: bold; }
+/*----------FORM BOXES-----------*/
+.first-name{ border: 1px solid #c8c8c8; font-size: 16px; color: #a0a0a0; width: 300px; margin-right: 10px; }
+.last-name{ border: 1px solid #c8c8c8; font-size: 16px; color: #a0a0a0; width: 300px; }
+.mobile-number{border: 1px solid #c8c8c8; font-size: 16px; color: #a0a0a0; width: 250px; margin-right: 10px;}
+.country-code{border: 1px solid #c8c8c8; background-color: #c8c8c8; padding: 12px 11px;  font-size: 16px; color: #4f4f4f;}
+.subject{ max-width: 610px; width: 100%; border: 1px solid #c8c8c8; font-size: 16px; color: #a0a0a0;}
+.message{  max-width: 610px; width: 100%; border: 1px solid #c8c8c8; font-size: 16px; height: 146px; }
+.submit{ font-size: 20px; color: #fff; font-weight: bold; border-radius: 25px; width: 163px; height: 46px; background-color: #1d7a8c;}
+.attachment{ font-size: 20px; color: #a0a0a0;}
+.part-attachment{ max-width: 630px; width: 100%; color: #a0a0a0;}
+.paragraph{ font-size: 12px;}
+.upload{ font-size: 20px; border: 1px solid #646464; color: #646464; border-radius: 25px; padding: 4px 15px; cursor: pointer;}
+input[type="file"] {
+    display: none;
+}
+/*---------MAP---------*/
+.background-map-image{ max-width: 1560px; width: 100%; position: absolute; max-height: 400px; height: 100%; }
+.location-pin{ position: relative; display: block; margin: auto; }
+/*----------FOOTER----------*/
+.footer{background-color: #fff; padding-top: 125px;}
+.footer-arrow{border-radius: 10px;  border: 1px solid; background-color: #525252;}
+.newsletter{font-size: 18px; font-weight: bold; color: #353548;}
+.email-input{border-radius: 35px; font-size: 14px; color: #565656; padding: 0px 100px 0px 25px;  box-shadow: none; border: 1px solid #565656}
+.submit-newsletter{color: #ffffff; padding: 10px 22px; background: #ff7b6d; border-radius: 35px; font-size: 14px;}
+.footer-news-letter{width: 100%;}
+.footer-navbar{font-size: 14px; background-color: #111111; height: auto;}
+ul li{list-style: none; color: #f1f1f1; font-size: 14px;}
+ul li a{ text-decoration: none; color: #f1f1f1; }
+.footer-line{ border: 1px solid; background-color: #424242; width: 84.6%; margin-left: 7.7%; }
+.privacy-faq{background-color: #111111; color: #9ba0a3; font-size: 14px;}
+
+@media (max-width:992px)

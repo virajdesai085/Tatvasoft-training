@@ -1,0 +1,45 @@
+/*--------Font Family--------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+*{font-family: 'Roboto', sans-serif;}
+/*---background image*/
+.background{background-color: #525252; height: auto;}
+/*-----TOP-PART-------*/
+.navbar-brand{}
+nav li{max-width: 100%; font-size: 17px;}
+.color-border{border: 1px solid #fff; border-radius: 80px; padding: 0 18px;}
+.color{ background-color: #29626d; }
+.faq-image{width: 100%;}
+/*------------ LOG IN REGISTRATION FORMS -------------*/
+.Log-in{ text-align: center; border: 1px solid #fff;	background-color:  #006072; border-radius: 100px; color: #fff;  padding: 10px 0;}
+.Login-footer{ font-size: 16px; height: auto; }
+.color-gradiant{ color: #6eabef; }
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+/*-----MAIN BODY PART----*/
+.body{ max-width: 946px; width: 100%; }
+.h1-title{font-size: 36px; color: #4f4f4f;  font-weight: medium;}
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+.separator-p{font-size: 18px; color: #646464;}
+/*----TABs-----*/
+.tabs{ max-width: 946px; width: 100%;}
+.nav-flex { flex-basis: 50%; font-size: 24px;}
+.bottom-border{border-bottom: 3px solid #1d7a8c; display: flex; padding: 0; width: 100%;}
+.nav-link.active{ border: 1px solid #1d7a8c; background-color: #1d7a8c; color: #ffffff; line-height: 61px; padding: 0; border-radius: 0;}
+.bottom-border .nav-link:not(.active){padding: 0; line-height: 61px; background-color: #f6f6f6; color: #646464;}
+/*---accordiomn-----*/
+.accordion-item{ margin-block:24px; margin: none; border: none; }
+.rotatable-arrow{ padding-left: 0; width: 100%; border: none; font-size: 16px; background-color: #ffffff;}
+.rotatable-arrow[aria-expanded="false"] > img { transform: rotate(-90deg); }
+/*-----------FOOTER---------------*/
+.footer{background-color: #fff;}
+.footer-arrow{border-radius: 10px;  border: 1px solid; background-color: #525252;}
+.newsletter{font-size: 18px; font-weight: bold; color: #353548;}
+.email-input{border-radius: 35px; font-size: 14px; color: #565656; padding: 0px 100px 0px 25px;  box-shadow: none; border: 1px solid #565656}
+.submit{color: #ffffff; padding: 10px 22px; background: #ff7b6d; border-radius: 35px; font-size: 14px;}
+.footer-news-letter{width: 100%;}
+.footer-navbar{font-size: 14px; background-color: #111111; height: auto;}
+ul li{list-style: none; color: #f1f1f1; font-size: 14px;}
+ul li a{ text-decoration: none; color: #f1f1f1; }
+.footer-line{ border: 1px solid; background-color: #424242; width: 84.6%; margin-left: 7.7%; }
+.privacy-faq{background-color: #111111; color: #9ba0a3; font-size: 14px;}
+/*------media-query------*/
+@media (max-width: 768px){ .nav-flex{ flex-basis:100% } }
