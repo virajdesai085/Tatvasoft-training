@@ -171,6 +171,24 @@ namespace Helperland.Controllers
                 return RedirectToAction("FAQ", "Home");
             }
         }
+        
+        public IActionResult BookService()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Details(ServiceRequestAddress sra)
+        {
+            ServiceRequestAddress s = new ServiceRequestAddress();
+            s.AddressLine1 = sra.AddressLine1;
+            s.AddressLine2 = sra.AddressLine2;
+            s.Mobile = sra.Mobile;
+            s.City = sra.City;
+            s.PostalCode = sra.PostalCode;
+            db.ServiceRequestAddresses.Add(sra);
+            db.SaveChanges();
+            return RedirectToAction("BookService");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
