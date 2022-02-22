@@ -1,0 +1,323 @@
+﻿ <link rel="stylesheet" href="~/css/BookService.css" asp-append-version="true" />
+<!--BACKGROUND-->
+<div class="background" id="top">
+
+<!--NAVBAR-->	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+      <img src="~/image/logo-small.png" alt="">
+    </a>
+    <label class="vertical-line d-lg-none"></label>
+          <a class="d-lg-none" aria-current="page" href="#"><img src="~/image/icon-notification.png"></a>
+      <label class="vertical-line d-lg-none"></label>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Warrenty</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
+        </li>
+        <li class="vertical-line none ms-xl-3"></li>
+        <li class="nav-item text-center none ms-xl-3  mt-xl-0 mt-2 ">
+          <a class="nav-link" aria-current="page" href="#"><img src="~/image/icon-notification.png"></a>
+        </li>
+        <li class="vertical-line none ms-xl-3"></li>
+        <li class="nav-item text-center justify-content-center ms-xl-3 mt-xl-0 mt-2 dropdown">
+          <a class="nav-link p-2" aria-current="page" id="navbarDropdown" data-bs-toggle="dropdown" href="#"><img class="pe-1" src="~/image/account-profile-image.png"><img src="~/image/white-downarrow.png"></a>
+          <ul class="dropdown-menu text-xl-start text-center" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item bg-transparent" href="#">Welcome sandip</a>
+            </li>
+            <li> <hr class="dropdown-divider"> </li>
+            <li>
+              <a class="dropdown-item bg-transparent" href="#">My Dashbord</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">My Settings</a>
+            </li>
+            <li>
+              <a  class="dropdown-item" href="#">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+</div>
+
+<section class="d-flex flex-column align-items-center justify-content-center">
+  <img class="image-fluid images d-flex" src="~/image/book-service-banner.jpg">
+  <h1 class="h1-title pt-5">Book your cleaning service</h1>
+  <div class="d-flex align-items-center pb-3">
+    <div class="separator-border-1 me-2"></div>
+    <img src="~/image/separator.png">
+    <div class="separator-border-1 ms-2"></div>
+  </div>
+</section>
+<section>
+  <div class="container b">
+    <div class="row ms-0">
+      <div class="col-12">
+        <div class="row">
+                <!--left side part-->
+          <div class="col-md-8 col-12">
+            <div class="tabs left-part">
+              <ul class="nav nav-tabs nav-pills nav-fill w-100 me-0 pe-0">
+                <li class="nav-item nav-flex">
+                  <a class="nav-link active" id="ss" data-bs-toggle="pill" href="#Setupservice"><img class="image-fluid im" src="~/image/setup-service.png">Setup Service</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="sp1" data-bs-toggle="pill" href="#SchedulePlan"><img class="image-fluid im" src="~/image/schedule-plan.png">Schedule & Plan</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="yd" data-bs-toggle="pill" href="#YourDetails"><img class="image-fluid im" src="~/image/user-details.png">Your Details</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="mp" data-bs-toggle="pill" href="#MakePayment"><img class="image-fluid im" src="~/image/payment.png">Make Payment</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="Setupservice">
+                  <p class="text-1 fw-bold mt-3">Enter your postal code</p>
+                  <input type="text" class="postal-code ps-3 pt-1 pb-1" placeholder="Postal Code"><button class="check-availability ms-2 pt-1 pb-1" onclick="goto()">Check Availability</button>
+                </div>
+                <div class="tab-pane fade" id="SchedulePlan">
+                    
+                <p class="text-1 fw-bold mt-3">Select number of rooms and bath</p>
+                  <span class="input-group dd-1 d-flex">
+                    <select class="bed-bath me-2 mb-3">
+                      <option selected>1 Bed</option>
+                      <option value="1">2 Bed</option>
+                      <option value="2">3 Bed</option>
+                      <option value="3">4 Bed</option>
+                    </select>
+                    <select class="bed-bath">
+                      <option selected>1 Bath</option>
+                      <option value="1">2 Bath</option>
+                      <option value="2">3 Bath</option>
+                      <option value="3">4 Bath</option>
+                    </select>
+                  </span>
+                  <div class="separator-border"></div>
+                    <div class="text-1 pb-3 me-5 fw-bold mt-3">When do you need a cleaner?</div>
+                      <label class="calender pt-1 ps-2"><img class="pe-2" src="~/image/blue-calender.png">13/02/2022</label>
+                        <span>
+                          <select class="bed-bath ms-2 me-2 mb-3">
+                            <option selected>8:00 AM</option>
+                            <option value="1">9:00 AM</option>
+                            <option value="1">10:00 AM</option>
+                            <option value="1">11:00 AM</option>
+                            <option value="1">12:00</option>
+                            <option value="1">1:00 PM</option>
+                            <option value="1">2:00 PM</option>
+                            <option value="1">3:00 PM</option>
+                            <option value="1">4:00 PM</option>
+                            <option value="1">5:00 PM</option>
+                            <option value="1">6:00 PM</option>
+                            <option value="1">7:00 PM</option>
+                            <option value="1">8:00 PM</option>
+                          </select>
+                        </span>                    
+                  <div class="separator-border mb-3"></div>
+                  <p class="text-1">Extra Services</p>
+                  <div class="grid-1 container-fluid w-100 d-flex ps-0 ms-0 pe-0 me-0 mt-4 pb-3 flex-wrap flex-xl-nowrap justify-content-around flex-row">
+                    <div class="d-flex flex-column align-items-center">
+                      <div class="circle align-items-center d-flex">
+                        <img src="~/image/grid-4.1.png">
+                      </div>
+                      <p class="text-center grid-p pt-2">Inside cabinets</p>                      
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <div class="circle align-items-center d-flex">
+                        <img src="~/image/grid-4.2.png">
+                      </div>
+                      <p class="text-center grid-p pt-2">Inside fridge</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <div class="circle align-items-center d-flex">
+                        <img src="~/image/grid-4.3.png">
+                      </div>
+                      <p class="text-center grid-p pt-2">Inside oven</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <div class="circle align-items-center d-flex">
+                        <img src="~/image/grid-4.4.png">
+                      </div>
+                      <p class="text-center grid-p pt-2">Laundry wash & dry</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                      <div class="circle align-items-center d-flex">
+                        <img src="~/image/grid-4.5.png">
+                      </div>
+                      <p class="text-center grid-p pt-2">Interior windows</p>
+                    </div>
+                  </div>
+                  <div class="separator-border mb-3"></div>
+                    <p class="text-1">Comments</p>
+                    <input type="text" class="w-100 pb-3 mb-2">
+                    <label><input type="checkbox"></label><span class="text-1 fw-nonw">I have pets at my place.</span>
+                  <div class="separator-border mb-3 mt-3"></div>
+                    <div class="text-center  mt-3 pb-5">
+                      <button class="submit text-center" onclick="gotoaddress()">Continue</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade mt-3" id="YourDetails">
+                  <p class="text-1">Enter your contact details, so we can serve you in better way!</p>
+                  <div class="mt-3 mb-3" id="address">
+                    <button class="new-address p-2" onclick="display()">+ Add new address</button>
+                  </div>
+                  @Html.Partial("Details")
+                  <p class="text-1">Your favourite service providers </p>
+                  <div class="separator-border mt-2 mb-2"></div>
+                  <p>You can choose your favourite service provider from below list.</p>
+                  <div class="separator-border"></div>
+                  <div class="text-center  mt-3 pb-5">
+                     <button class="submit text-center" onclick="gotopay()">Continue</button>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="MakePayment">
+                  <p  class="text-1 mt-3 mb-2 ">Pay securely with Helperland Payment Getway!</p>
+                  <p>Promo Code (optional)</p>
+                  <input class="promo-code ps-2" type="text" placeholder="Promo Code (optional)">
+                  <button class="Apply ms-2 mb-3 ps-3 pe-3 pt-1 pb-1">Apply</button>
+                  <div class="separator-border mb-3"></div>
+                  <div class="w-100 card-border">
+                    <i class="ps-3 bi bi-credit-card"></i><input class="border-none" type="text" placeholder="Card number">
+                    <input class="border-none-1" type="text" placeholder="CVV"><input class="border-none-1" type="text" placeholder="YY">
+
+                    <input class="border-none-1" type="text" placeholder="MM /">
+                  </div>
+                  <div class="accepted-card w-100 mb-0 pb-0"><p class="right mt-4 mb-0">Accepted-cards:</p></div>
+                  <img class="right img-3" src="~/image/3.png"><img class="right img-3" src="~/image/2.png"><img class="right img-3" src="~/image/1.png">
+                  <div class="w-100 right">
+                  <button class="submit mt-4" type="submit">Complete Booking</button>
+                  </div> 
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="col-md-4 col-12 right-part p-0 m-0">
+            <div class="head container-fluid align-items-center justify-content-center">
+              Payment Summary
+            </div>
+            <div class="details fw-bold mt-3 ps-4 pe-4 w-100 mb-3">
+              <label>15/2/2022  08:00</label>
+              <p class="pb-0 mb-0">Duration</p>
+              <label>Basic</label><span class="right">3 Hrs</span>
+              <div class="separator-border"></div>
+              <label>Total Service Time</label><span class="right">3 Hrs</span>
+            </div>
+            <div class="separator-border"></div>
+            <div class="ps-4 pe-4 line-h fw-bold">
+              <label>Per Cleaning</label><span class="right">75,00 €</span>
+            </div>
+            <div class="separator-border"></div>
+            <div class="total-p ps-4 pe-4 fw-bold justify-content-center align-items-center">
+              <label>Total Payment</label><span class="right euro">75,00 €</span>
+            </div>
+            <div class="footer-box pb-0 mb-0">
+              <p class="ps-4"><img class="pe-2" src="~/image/smiley.png">See what is always included.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--FOOTER-->
+<div class="footer container-fluid d-flex pb-5">
+  
+  <div class=" pt-5  footer-news-letter d-flex flex-column justify-content-center">
+    <h6 class="news-letter pb-2 text-center">GET OUR NEWSLETTER</h6>
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+      <input class="email-input py-2" type="email" placeholder="YOUR EMAIL">
+      <div class="Submit">Submit</div>
+    </div>
+  </div>
+</div>
+<div class="footer-navbar px-5 py-4 d-flex justify-content-between align-items-center flex-lg-row flex-column">
+  <img class="mx-lg-4 ms-4 mb-lg-0 mb-3" src="~/image/logo-small.png">
+  <ul class=" d-flex flex-lg-row gap-lg-4 gap-0 pe-lg-5 me-lg-5 text-center align-items-center flex-column ">
+    <li class="mb-lg-0 mb-2">
+      <a href="index.html">HOME</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a href="About.html">ABOUT</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      TESTIMONIALS
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a href="FAQ.html">FAQs</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      INSURANCE POLICY
+    </li>
+    <li class="mb-lg-0 mb-2">
+      IMPRESSUM
+    </li>
+  </ul>
+  <div class="social-media">
+    <img class="me-2 ps-4 " src="~/image/facebook.png">
+    <img src="~/image/instagram.png">
+  </div>
+</div>
+<div class="d-flex flex-column privacy-faq pb-3">
+  <div class="footer-line"></div>
+  <div class="text-center pt-3">©2018 Helperland. All rights reserved.     Terms and Conditions  |  Privacy Policy</div>
+</div>
+
+
+<!--bootstrap scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var button = document.getElementById("address");
+      var target = document.getElementById("form");
+      var bool = true;
+
+      function display(){
+        if (bool) {
+          target.setAttribute("class" , "show");
+          button.setAttribute("class" , "hide");
+          bool = false;
+        }
+        else{
+          target.setAttribute("class" , "hide");
+          bool = true;
+        }
+      }
+
+      var tab1 = document.getElementById("Setupservice");
+      var tab2 = document.getElementById("SchedulePlan");
+      var tab3 = document.getElementById("YourDetails");
+      var tab4 = document.getElementById("MakePayment");
+      function goto()
+      {
+          document.getElementById("sp1").classList.add("active");
+          tab1.classList.remove("active");
+          tab2.setAttribute("class" , "active");
+      }
+      function gotoaddress()
+      {
+          document.getElementById("yd").classList.add("active");
+          tab2.setAttribute("class" , "hide");
+          tab3.setAttribute("class" , "active");
+      }
+      function gotopay(){
+          document.getElementById("mp").classList.add("active");
+          tab3.setAttribute("class" , "hide");
+          tab4.setAttribute("class" , "active");
+      }
+    </script>
