@@ -1,0 +1,69 @@
+﻿/*--------Font Family--------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+*{font-family: 'Roboto', sans-serif;}
+/*---background image*/
+.background{background-color: #525252; height: auto;}
+/*-----TOP-PART-------*/
+nav li{max-width: 100%; font-size: 17px;}
+.color-border{border: 1px solid #fff; border-radius: 80px; padding: 0 18px;}
+.color{ background-color: #29626d; }
+.vertical-line{ height: 50px; width: 1px; background-color: #e1e1e1; }
+.dropdown-menu[data-bs-popper] {left: -130px;}
+.dropdown-divider{ width: 100%; height: 2px; background-color: #111111; }
+.images{width: 100%; max-width: 1530px;}
+.h1-title{font-size: 36px; color: #4f4f4f;  font-weight: 500;}
+.separator-border{  width: 62px; height: 1px; background-color: #ccc;}
+.nav{ border-bottom: none; }
+.left-part{ width: 825px; }
+.b ul li{ text-decoration: none; font-size: 18px; border: 1px solid #F3F3F3; background-color: #F3F3F3; }
+.b ul li a{ color: #646464;}
+.nav-flex{ flex-basis: 25%; }
+.b ul li a .active{  border: transparent; background-color: #1d7a8c !important; color: #ffffff; border-radius: 0;}
+.text-1{ font-size: 17px; color: #646464; font-weight: bold; }
+.postal-code{ border: 1px solid #4F4F4F; font-size: 17px; width: 350px;}
+.check-availability{ border: 1px solid #1d7a8c; background-color: #1d7a8c; color: #fff; border-radius: 25px; font-size: 17px; width: 175px; }
+.bed-bath{ width: 90px; height: 35px; font-size: 17px; color: #646464;}
+.separator-border{ width: 100%; height: 2px; color: red; }
+.que-1{ width: 400px; }
+.calender{ border: 1px solid #646464; font-size: 17px; height: 35px; width:150px;	}
+.circle{ line-height: 108px; justify-content: center; border: 1px solid #b0c9ce; width: 108px; height: 108px; border-radius: 50%; }
+.grid-1{ width: 100%; }
+.grid-p{ font-size: 16px; color: #646464; }
+.grid-minutes{ font-size: 18px; color: #1d7a8c; font-weight: bold; }
+.submit{ font-size: 17px; color: #fff; float: right; font-weight: bold; border-radius: 25px; width: 163px; height: 46px; background-color: #1d7a8c;}
+.form{ background-color: #f3f3f3; border: 1px solid #646464; width: 100%; height: 450px; }
+.input-a{ width: 375px; }
+.input-b{ width: 375px; }
+.save{  font-size: 17px; color: #fff; font-weight: bold; border-radius: 25px; width: 99px; height: 46px; background-color: #1d7a8c;}
+.cancel{ font-size: 17px; color: #646464; font-weight: bold; border-radius: 25px; width: 99px; height: 46px; background-color: #F3F3F3; }
+.show{ display: block; }
+.hide{ display: none; }
+.new-address{ font-size: 17px; color: #1d7a8c; border-color: #1d7a8c; background-color: #fff; border-radius: 25px; }
+.promo-code{ width: 300px; }
+.Apply{ font-size: 17px; font-weight: 500; border-radius: 25px; color: #1d7a8c; border-color: #1d78ac; }
+.right-part{ border: 1px solid #111; width: 33.33%; height: auto; }
+.head{ border: 1px solid #1d7a8c; background-color: #1d7a8c; color: #fff; line-height: 50px; font-size: 19px;}
+.right{ float: right; }
+.euro{font-size: 48px; color: #1d7a8c; font-weight: bold;}
+.line-h{ line-height: 65px; color: #646464; }
+.total-p{ line-height: 65px; color: #1d7a8c;}
+.footer-box{ background-color: #F3F3F3; line-height: 35PX; font-size: 17px;}
+.details{ font-size: 17px; color: #646464; }
+.border-none{ border: none; outline: none; width: 200px;}
+.border-none-1{ border: none; outline: none; width: 50px; float: right;}
+.card-border{ width: 100%; border: 1px solid #646464; line-height: 50px; box-shadow: 4px; font-size: 18px;}
+.accepted-card{ float: right; font-size: 10px; color: #646464; }
+.img-3{ width: 40px; height: 20px; }
+/*-----------FOOTER---------------*/
+.footer{background-color: #fff;}
+.footer-arrow{border-radius: 10px;  border: 1px solid; background-color: #525252;}
+.newsletter{font-size: 18px; font-weight: bold; color: #353548;}
+.email-input{border-radius: 35px; font-size: 14px; color: #565656; padding: 0px 100px 0px 25px;  box-shadow: none; border: 1px solid #565656}
+.Submit{color: #ffffff; padding: 10px 22px; background: #ff7b6d; border-radius: 35px; font-size: 14px;}
+.footer-news-letter{width: 100%;}
+.footer-navbar{font-size: 14px; background-color: #111111; height: auto;}
+ul li{list-style: none; color: #f1f1f1; font-size: 14px;}
+ul li a{ text-decoration: none; color: #f1f1f1; }
+.footer-line{ border: 1px solid; background-color: #424242; width: 84.6%; margin-left: 7.7%; }
+.privacy-faq{background-color: #111111; color: #9ba0a3; font-size: 14px;}
+
