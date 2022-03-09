@@ -1,0 +1,293 @@
+﻿@using Microsoft.AspNetCore.Http
+<link rel="stylesheet" href="~/css/CustomerDashbord.css" />
+
+<!--BACKGROUND-->
+<div class="background" id="top">
+
+<!--NAVBAR-->	
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+      <img src="~/image/logo-small.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto ex">
+        <li class="nav-item text-center color-border color ms-xl-3   mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="BookService" asp-controller="Home">Book now</a>
+        </li>
+        <li class="nav-item text-center color-border ms-xl-3   mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-2 ">
+          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
+        </li>
+        <li class="nav-item text-center ms-xl-3  mt-2 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
+        </li>
+        @if(Context.Session.GetString("User_id") != null)
+        {
+        <li class="vertical-line none ms-xl-3 mt-1 "></li>
+        <li class="nav-item text-center none ms-xl-3 mt-1 ">
+            <a class="nav-link" aria-current="page" href="#"><img src="~/image/icon-notification.png"></a>
+        </li>
+        <li class="vertical-line none ms-xl-3 mt-1 "></li>
+        <li class="nav-item text-center justify-content-center ms-xl-3 dropdown">
+            <a class="nav-link p-2 " aria-current="page" id="navbarDropdown" data-bs-toggle="dropdown" href="#"><img class="pe-1" src="~/image/account-profile-image.png"><img src="~/image/white-downarrow.png"></a>
+            <ul class="dropdown-menu text-xl-start text-center" aria-labelledby="navbarDropdown">
+            <li>
+                <a class="dropdown-item bg-transparent" href="#">Welcome @Context.Session.GetString("UserName_Session")</a>
+            </li>
+            <li> <hr class="dropdown-divider"> </li>
+            <li>
+                <a class="dropdown-item bg-transparent" href="#">My Dashbord</a>
+            </li>
+            <li>
+                <a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a>
+            </li>
+            <li>
+                <a  class="dropdown-item" asp-action="Logout" asp-controller="Home" >Logout</a>
+            </li>
+            </ul>
+        </li>
+        }
+        else
+        {
+        <li class="nav-item text-center color-border color ms-xl-3 mt-3 ">
+          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
+        </li>
+        <li class="nav-item text-center color-border color ms-xl-3 mt-3 ">
+          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
+        </li>
+
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<!--Welcome Sandip -->
+<section class="mb-5">
+  <div class="container-fluid welcome-sandip d-flex flex-column text-center justify-content-center align-items-center">
+    <h1 class="welcome">Welcome,<span class="sandip"> @TempData["username"]! </span></h1>
+  </div>     
+  <section class="container-fluid pt-3">
+    <div class=" row ">
+      <div class="col-lg-3 col-12 tabs-menu me-0 pe-0">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-list" aria-controls="navbar-list" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-light" id="navbar-list">
+            <ul class="nav tabs nav-pills justify-content-center align-content-start flex-column text-center text-xl-start">
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-D" data-bs-toggle="pill" data-bs-target="#tabs-Dashbord" aria-controls="tabs-Dashbord" aria-selected="false">Dashbord</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SH" data-bs-toggle="pill" data-bs-target="#tabs-Service-History" aria-controls="tabs-Service-History" aria-selected="false">Service History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SS" data-bs-toggle="pill" data-bs-target="#tabs-Service-Schedule" aria-controls="tabs-Service-Schedule" aria-selected="false">Service Schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-FP" data-bs-toggle="pill" data-bs-target="#tabs-Favourite-Pros" aria-controls="tabs-Favourite-Pros" aria-selected="false">Favourite Pros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-i" data-bs-toggle="pill" data-bs-target="#tabs-Invoices" aria-controls="tabs-Invoices" aria-selected="false">Invoices</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-N" data-bs-toggle="pill" data-bs-target="#tabs-Notifications" aria-controls="tabs-Notifications" aria-selected="false">Notifications</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-lg-9 col-12 ms-0 ps-0">
+        <div class="tab-content description-part">
+          <div class="tab-pane accordian-collapse collapse" id="tabs-Dashbord" aria-labelledby="tabs-D">
+            <div class="d-flex justify-content-between pb-2">
+              <span class="text-1">Current Service Requests</span>
+              <button class="book-now ps-2 pe-2">Book Now!</button>
+            </div>
+            <table class="table border-box align-middle">
+              <thead>
+                <tr>
+                  <th>Service ID</th>
+                  <th>Service Details</th>
+                  <th>Service Provider</th>
+                  <th><span class="ps-1">Payment</span></th>
+                  <th><span class="ps-5">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="mb-sm-3 mt-sm-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                  <td>565646</td>
+                   <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">26/12/2021 <br><img class="me-2"src="~/image/clock.png">12:00-8:00</td>
+                   <td data-label="Service Provider"><div class="cap-star d-flex flex-wrap"><img class="cap me-2" src="~/image/cap.png"><div class="Service-Provider pb-0 d-flex flex-wrap">Lyum Watson<span class="star"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/white-star.png"></span>4</div></div></td>
+                   <td data-label="Payment"><span class="number-63">63.00 €</span></td>
+                   <td><span><button class="reschedule p-1 m-1" data-bs-toggle="modal" data-bs-target="#Reschedule">Reschedule</button></span><span><button class="cancel p-1 m-1" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-History" aria-labelledby="tabs-SH">
+            @Html.Partial("CustomerServiceHistory")
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-Schedule" aria-labelledby="tabs-SS">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+              vero?
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Favourite-Pros" aria-labelledby="tabs-FP">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+              vero?
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Invoices" aria-labelledby="tabs-I">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+              vero?
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Notifications" aria-labelledby="tabs-N">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+              vero?
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+
+<div class="footer-navbar px-5 py-4 d-flex justify-content-between align-items-center flex-lg-row flex-column">
+  <img class="mx-lg-4 ms-4 mb-lg-0 mb-3" src="~/image/logo-small.png">
+  <ul class=" d-flex flex-lg-row gap-lg-4 gap-0 pe-lg-5 me-lg-5 text-center align-items-center flex-column ">
+    <li class="mb-lg-0 mb-2">
+      <a href="index.html">HOME</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a href="About.html">ABOUT</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      TESTIMONIALS
+    </li>
+    <li class="mb-lg-0 mb-2">
+      <a href="FAQ.html">FAQs</a>
+    </li>
+    <li class="mb-lg-0 mb-2">
+      INSURANCE POLICY
+    </li>
+    <li class="mb-lg-0 mb-2">
+      IMPRESSUM
+    </li>
+  </ul>
+  <div class="social-media">
+    <img class="me-2 ps-4 " src="~/image/facebook.png">
+    <img src="~/image/instagram.png">
+  </div>
+</div>
+<div class="d-flex flex-column privacy-faq pb-3">
+  <div class="footer-line"></div>
+  <div class="text-center pt-3">©2018 Helperland. All rights reserved.     Terms and Conditions  |  Privacy Policy</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade justify-content-center align-items-center" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="justify-content-between">
+          <button type="button" class="btn-close x mt-0 pt-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          <span>Service Details</span><br>
+        </div>
+        <div class="mt-2 mb-0 pb-0">
+          <span class="row-head modal-time">01/03/2022 08:00 -11:00</span><br>
+          <span class="row-head">Duration:</span> 3.5 Hrs.
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Service-ID:</span> 10575.<br>
+          <span class="row-head">Extras:</span> Reinigung des Backofens<br>
+          <span class="row-head">Lump sum price:</span><span class="price">87,00 €</span><br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Address:</span> Krishnanagar,<br>
+          <span class="row-head">Billing address:</span> Identity with address <br>
+          <span class="row-head">Phone:</span> +49 223232 <br>
+          <span class="row-head">E-mail:</span> cust001@yopmail.com<br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Comments</span><br>
+          <span>I've no pets at home.</span>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="mt-2">
+          <span><button class="reschedule p-1 m-1" data-bs-toggle="modal" data-bs-target="#Reschedule">Reschedule</button></span><span><button class="cancel p-1 m-1" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--Reschedule pop up model-->
+    <div class="modal fade" id="Reschedule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+            <div>
+                <span class="modal-title" id="exampleModalLabel">Reschedule Service Request</span>
+                <button type="button" class="btn-close x" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <span class="mt-2 model-head">Select New Date & Time</span><br>
+            <label class="calender pt-1 ps-2"><img class="pe-2" src="~/image/blue-calender.png">13/02/2022</label>
+                <span>
+                <select class="reschedule-time ms-2 me-2 mb-3">
+                    <option selected>8:00 AM</option>
+                    <option value="1">9:00 AM</option>
+                    <option value="1">10:00 AM</option>
+                    <option value="1">11:00 AM</option>
+                    <option value="1">12:00</option>
+                    <option value="1">1:00 PM</option>
+                    <option value="1">2:00 PM</option>
+                    <option value="1">3:00 PM</option>
+                    <option value="1">4:00 PM</option>
+                    <option value="1">5:00 PM</option>
+                    <option value="1">6:00 PM</option>
+                    <option value="1">7:00 PM</option>
+                    <option value="1">8:00 PM</option>
+                </select>
+                </span>
+                <button class="update" type="button">Update</button>
+            </div>
+        </div>
+        </div>
+    </div>
+<!--Cancel-->
+<div class="modal fade" id="can" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <span class="modal-title" id="exampleModalLabel">Cancel Service Request</span>
+          <button type="button" class="btn-close x" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <span class="mt-2 model-head">Why do you want to cancel your service?</span><br>
+        <input type="text" class="Reason w-100" placeholder="Reason">
+
+        <button class="update mt-2" type="button">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
