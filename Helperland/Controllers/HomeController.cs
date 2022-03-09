@@ -1,6 +1,10 @@
-﻿using Helperland.Models;
+using Helperland_projectContext.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +13,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace Helperland.Controllers
+namespace Helperland_projectContext.Controllers
 {
     public class HomeController : Controller
     {
@@ -57,22 +61,42 @@ namespace Helperland.Controllers
             _ = db.SaveChanges();
             return View("Contact");
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
+      
         [HttpPost]
         public IActionResult Login(User user)
         {
-            var login_user = db.Users.FirstOrDefault(x => !(!x.Email.Equals(user.Email) || !x.Password.Equals(user.Password)));
+            User login_user = db.Users.FirstOrDefault(x => (x.Email.Equals(user.Email) && x.Password.Equals(user.Password)));
             if (login_user != null)
             {
-                return RedirectToAction("FAQ");
+                if(login_user.UserTypeId == 1)
+                {
+                    HttpContext.Session.SetInt32("User_id" , login_user.UserId);
+                    HttpContext.Session.SetString("UserName_Session", login_user.FirstName);
+                    TempData["username"] = login_user.FirstName + " " + login_user.LastName;
+                    return RedirectToAction("FAQ", "Home");
+                }
+                else if(login_user.UserTypeId == 2)
+                {
+                   HttpContext.Session.SetInt32("User_id", login_user.UserId);
+                    TempData["username"] = login_user.FirstName + " " + login_user.LastName;
+                   return RedirectToAction("About", "Home");  
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
-                return RedirectToAction("Index");
+                ViewBag.message = "Username or Password is Incorrect. Please try again";
+                return RedirectToAction("Prices");
             }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("User_id");
+            return RedirectToAction("Index");
         }
         public IActionResult CreateAccount()
         {
@@ -140,20 +164,16 @@ namespace Helperland.Controllers
                     smtp.Send(message);
                 }
                 return RedirectToAction("Index", "Home");
-
             }
             else
             {
                 return View();
-
             }
         }
-
         public IActionResult ResetPassword()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(User user)
@@ -171,23 +191,135 @@ namespace Helperland.Controllers
                 return RedirectToAction("FAQ", "Home");
             }
         }
-        
         public IActionResult BookService()
+        {
+            List<UserAddress> add = db.UserAddresses.Where(x => x.UserId == 3).ToList();
+            System.Threading.Thread.Sleep(2000);
+            return View(add);
+            //return View();
+        }
+        [HttpPost]
+        public string zipcode([FromBody] string postalcode )
+        {
+            string a;
+            Zipcode p = db.Zipcodes.Where(x => x.ZipcodeValue.Equals(postalcode)).SingleOrDefault();
+            if (p != null)
+            {
+                a = "true";
+            }
+            else
+            {
+                a="false";
+            }
+            return a;
+        }
+
+        public IActionResult SaveAddress([FromBody] UserAddress userAddress)
+        {
+            userAddress.UserId = 3;
+            userAddress.IsDefault = false;
+            userAddress.IsDeleted = false;
+            db.UserAddresses.Add(userAddress);
+            db.SaveChanges();
+            return Json(true);
+        }
+        public IActionResult CompleteBook([FromBody] ServiceRequest serviceRequest)
+        {
+            serviceRequest.UserId = 3;
+            serviceRequest.Distance = 15;
+            serviceRequest.ServiceHourlyRate = 10;
+            serviceRequest.PaymentDue = true;
+            serviceRequest.CreatedDate = DateTime.Now;
+            serviceRequest.ModifiedDate = DateTime.Now;
+            serviceRequest.ServiceStartDate = DateTime.Now;
+            serviceRequest.ModifiedBy = 3;
+            serviceRequest.CreatedDate = DateTime.Now;
+            serviceRequest.ModifiedDate = DateTime.Now;
+            db.ServiceRequests.Add(serviceRequest);
+            db.SaveChanges();
+            return Json(true);
+        }
+        public IActionResult CustomerDashbord()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Details(ServiceRequestAddress sra)
+        [HttpGet]
+        public IActionResult CustomerSettings()
         {
-            ServiceRequestAddress s = new ServiceRequestAddress();
-            s.AddressLine1 = sra.AddressLine1;
-            s.AddressLine2 = sra.AddressLine2;
-            s.Mobile = sra.Mobile;
-            s.City = sra.City;
-            s.PostalCode = sra.PostalCode;
-            db.ServiceRequestAddresses.Add(sra);
+            int userid = (int)HttpContext.Session.GetInt32("User_id");
+            User user = db.Users.Where(x => x.UserId == userid).FirstOrDefault();
+            return View(user);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CustomerSettings(User user)
+        {
+            User u = db.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmPassword");
+            if(ModelState.IsValid)
+            {
+                u.FirstName = user.FirstName;
+                u.LastName = user.LastName;
+                u.Mobile = user.Mobile;
+                u.DateOfBirth = user.DateOfBirth;
+                db.Users.Update(u);
+                db.SaveChanges();
+
+                var username = user.FirstName + ":" + user.LastName;
+                HttpContext.Session.SetString("UserName_Session", username);
+            }
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CustomerUpdatePassword(User user)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("User_id");
+            var u = db.Users.Where(x => x.UserId == userid).FirstOrDefault();
+            
+                if(user.Password == u.Password)
+                {
+                    u.Password = user.ConfirmPassword;
+                    db.Users.Update(u);
+                    db.SaveChanges();
+                    ViewBag.alert = "Succesfull";
+                    return RedirectToAction("CustomerSettings");
+                }
+                else
+                {
+                    ViewBag.alert = "Error";
+                return RedirectToAction("CustomerSettings");
+                }
+        }
+        [HttpGet]
+        public IActionResult CustomerAddress()
+        {
+            int userid = (int)HttpContext.Session.GetInt32("User_id");
+            List<UserAddress> address = db.UserAddresses.Where(x => x.UserId == userid).ToList();
+            return View(address);
+        }
+
+        [HttpPost]
+        public string DeleteAddress(int Id)
+        {
+            UserAddress userAddress = db.UserAddresses.Where(x => x.AddressId == Id).FirstOrDefault();
+            db.UserAddresses.Remove(userAddress);
             db.SaveChanges();
-            return RedirectToAction("BookService");
+            return "true";
+        }
+        public IActionResult CustomerAddressAddOrEdit(int id)
+        {
+            if(id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                UserAddress address = db.UserAddresses.Where(x => x.AddressId == id).FirstOrDefault();
+                return View(address);
+            }
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
