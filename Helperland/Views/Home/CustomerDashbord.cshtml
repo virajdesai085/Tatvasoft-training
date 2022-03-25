@@ -1,82 +1,15 @@
-﻿@using Microsoft.AspNetCore.Http
-<link rel="stylesheet" href="~/css/CustomerDashbord.css" />
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<Helperland_projectContext.Models.ServiceRequest>
+<link rel="stylesheet" href="~/css/Service-History.css" />
+<script src="https://use.fontawesome.com/48380cf6ab.js"></script>
 
-<!--BACKGROUND-->
-<div class="background" id="top">
-
-<!--NAVBAR-->	
-<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-      <img src="~/image/logo-small.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto ex">
-        <li class="nav-item text-center color-border color ms-xl-3   mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="BookService" asp-controller="Home">Book now</a>
-        </li>
-        <li class="nav-item text-center color-border ms-xl-3   mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
-        </li>
-        @if(Context.Session.GetString("User_id") != null)
-        {
-        <li class="vertical-line none ms-xl-3 mt-1 "></li>
-        <li class="nav-item text-center none ms-xl-3 mt-1 ">
-            <a class="nav-link" aria-current="page" href="#"><img src="~/image/icon-notification.png"></a>
-        </li>
-        <li class="vertical-line none ms-xl-3 mt-1 "></li>
-        <li class="nav-item text-center justify-content-center ms-xl-3 dropdown">
-            <a class="nav-link p-2 " aria-current="page" id="navbarDropdown" data-bs-toggle="dropdown" href="#"><img class="pe-1" src="~/image/account-profile-image.png"><img src="~/image/white-downarrow.png"></a>
-            <ul class="dropdown-menu text-xl-start text-center" aria-labelledby="navbarDropdown">
-            <li>
-                <a class="dropdown-item bg-transparent" href="#">Welcome @Context.Session.GetString("UserName_Session")</a>
-            </li>
-            <li> <hr class="dropdown-divider"> </li>
-            <li>
-                <a class="dropdown-item bg-transparent" href="#">My Dashbord</a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a>
-            </li>
-            <li>
-                <a  class="dropdown-item" asp-action="Logout" asp-controller="Home" >Logout</a>
-            </li>
-            </ul>
-        </li>
-        }
-        else
-        {
-        <li class="nav-item text-center color-border color ms-xl-3 mt-3 ">
-          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3 mt-3 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-        </li>
-
-        }
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
+<partial name="~/Views/Shared/Header2.cshtml" />
 
 
 <!--Welcome Sandip -->
 <section class="mb-5">
   <div class="container-fluid welcome-sandip d-flex flex-column text-center justify-content-center align-items-center">
-    <h1 class="welcome">Welcome,<span class="sandip"> @TempData["username"]! </span></h1>
+    <h1 class="welcome">Welcome,<span class="sandip"> @Context.Session.GetString("UserName_Session")! </span></h1>
   </div>     
   <section class="container-fluid pt-3">
     <div class=" row ">
@@ -111,34 +44,42 @@
       </div>
       <div class="col-lg-9 col-12 ms-0 ps-0">
         <div class="tab-content description-part">
-          <div class="tab-pane accordian-collapse collapse" id="tabs-Dashbord" aria-labelledby="tabs-D">
-            <div class="d-flex justify-content-between pb-2">
-              <span class="text-1">Current Service Requests</span>
-              <button class="book-now ps-2 pe-2">Book Now!</button>
+          <div class="tab-pane active accordian-collapse collapse" id="tabs-Dashbord" aria-labelledby="tabs-D">
+            
+        <div class="d-flex justify-content-between pb-2">
+                <span class="text-1">Current Service Requests</span>
+                <button class="book-now ps-2 pe-2" asp-action="BookService">Book Now!</button>
             </div>
             <table class="table border-box align-middle">
-              <thead>
+                <thead>
                 <tr>
-                  <th>Service ID</th>
-                  <th>Service Details</th>
-                  <th>Service Provider</th>
-                  <th><span class="ps-1">Payment</span></th>
-                  <th><span class="ps-5">Actions</span></th>
+                    <th>Service ID</th>
+                    <th>Service Details</th>
+                    <th>Service Provider</th>
+                    <th><span class="ps-1">Payment</span></th>
+                    <th><span class="ps-5">Actions</span></th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr class="mb-sm-3 mt-sm-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                  <td>565646</td>
-                   <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">26/12/2021 <br><img class="me-2"src="~/image/clock.png">12:00-8:00</td>
-                   <td data-label="Service Provider"><div class="cap-star d-flex flex-wrap"><img class="cap me-2" src="~/image/cap.png"><div class="Service-Provider pb-0 d-flex flex-wrap">Lyum Watson<span class="star"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/white-star.png"></span>4</div></div></td>
-                   <td data-label="Payment"><span class="number-63">63.00 €</span></td>
-                   <td><span><button class="reschedule p-1 m-1" data-bs-toggle="modal" data-bs-target="#Reschedule">Reschedule</button></span><span><button class="cancel p-1 m-1" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span></td>
-                </tr>
-              </tbody>
+                </thead>
+                <tbody>
+                    @foreach ( var item in Model)
+                    {
+                        if(@item.Status == 0)
+                        {
+                            <tr class="mb-sm-3 mt-sm-3" >
+                                <td id="popup" srid="@item.ServiceRequestId">@item.ServiceRequestId</td>
+                                <td data-label="Service date" id="popup" srid="@item.ServiceRequestId"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate.ToShortDateString() <br><img class="me-2"src="~/image/clock.png">@item.ServiceStartDate.ToLongTimeString()</td>
+                                <td data-label="Service Provider" id="popup" srid="@item.ServiceRequestId"><div class="cap-star d-flex flex-wrap"><img class="cap me-2" src="~/image/cap.png"><div class="Service-Provider pb-0 d-flex flex-wrap">Lyum Watson<span class="star"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/white-star.png"></span>4</div></div></td>
+                                <td data-label="Payment" id="popup" srid="@item.ServiceRequestId"><span class=" ps-1 number-63">@item.TotalCost</span></td>
+                                <td><span><button class="reschedule p-1 m-1" id="res" data-id="@item.ServiceRequestId" onclick="reschedule(@item.ServiceRequestId)">Reschedule</button></span><span><button class="cancel p-1 m-1" id="Cancel" data-id="@item.ServiceRequestId" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
             </table>
+
           </div>
           <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-History" aria-labelledby="tabs-SH">
-            @Html.Partial("CustomerServiceHistory")
+            
           </div>
           <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-Schedule" aria-labelledby="tabs-SS">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
@@ -199,81 +140,28 @@
 
 <!-- Modal -->
 <div class="modal fade justify-content-center align-items-center" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-body">
-        <div class="justify-content-between">
-          <button type="button" class="btn-close x mt-0 pt-0" data-bs-dismiss="modal" aria-label="Close"></button>
-          <span>Service Details</span><br>
-        </div>
-        <div class="mt-2 mb-0 pb-0">
-          <span class="row-head modal-time">01/03/2022 08:00 -11:00</span><br>
-          <span class="row-head">Duration:</span> 3.5 Hrs.
-        </div>
-        <div class="seprator-line mt-1 mb-1"></div>
-        <div class="modal-part-1">
-          <span class="row-head">Service-ID:</span> 10575.<br>
-          <span class="row-head">Extras:</span> Reinigung des Backofens<br>
-          <span class="row-head">Lump sum price:</span><span class="price">87,00 €</span><br>
-        </div>
-        <div class="seprator-line mt-1 mb-1"></div>
-        <div class="modal-part-1">
-          <span class="row-head">Address:</span> Krishnanagar,<br>
-          <span class="row-head">Billing address:</span> Identity with address <br>
-          <span class="row-head">Phone:</span> +49 223232 <br>
-          <span class="row-head">E-mail:</span> cust001@yopmail.com<br>
-        </div>
-        <div class="seprator-line mt-1 mb-1"></div>
-        <div class="modal-part-1">
-          <span class="row-head">Comments</span><br>
-          <span>I've no pets at home.</span>
-        </div>
-        <div class="seprator-line mt-1 mb-1"></div>
-        <div class="mt-2">
-          <span><button class="reschedule p-1 m-1" data-bs-toggle="modal" data-bs-target="#Reschedule">Reschedule</button></span><span><button class="cancel p-1 m-1" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span>
-        </div>
+      <div class="modal-body" id="popup-body">
       </div>
-      
+
     </div>
   </div>
 </div>
 
 <!--Reschedule pop up model-->
     <div class="modal fade" id="Reschedule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-            <div>
-                <span class="modal-title" id="exampleModalLabel">Reschedule Service Request</span>
-                <button type="button" class="btn-close x" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body" id="Reschedulebody">
+
+                </div>
             </div>
-            <span class="mt-2 model-head">Select New Date & Time</span><br>
-            <label class="calender pt-1 ps-2"><img class="pe-2" src="~/image/blue-calender.png">13/02/2022</label>
-                <span>
-                <select class="reschedule-time ms-2 me-2 mb-3">
-                    <option selected>8:00 AM</option>
-                    <option value="1">9:00 AM</option>
-                    <option value="1">10:00 AM</option>
-                    <option value="1">11:00 AM</option>
-                    <option value="1">12:00</option>
-                    <option value="1">1:00 PM</option>
-                    <option value="1">2:00 PM</option>
-                    <option value="1">3:00 PM</option>
-                    <option value="1">4:00 PM</option>
-                    <option value="1">5:00 PM</option>
-                    <option value="1">6:00 PM</option>
-                    <option value="1">7:00 PM</option>
-                    <option value="1">8:00 PM</option>
-                </select>
-                </span>
-                <button class="update" type="button">Update</button>
-            </div>
-        </div>
         </div>
     </div>
 <!--Cancel-->
 <div class="modal fade" id="can" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
         <div>
@@ -281,13 +169,178 @@
           <button type="button" class="btn-close x" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <span class="mt-2 model-head">Why do you want to cancel your service?</span><br>
-        <input type="text" class="Reason w-100" placeholder="Reason">
+        <input type="text" id="comments" class="Reason w-100" placeholder="Reason">
 
-        <button class="update mt-2" type="button">Cancel</button>
+        <button class="update mt-2" id="cancelreq" type="button">Cancel</button>
 
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    $(document).on("click","#tabs-SH",function(){
+        $("#tabs-Service-History").load("@Url.Action("CustomerServiceHistory","Home")")
+    });
+    function reschedule(id){
+         console.log(id);
+        $.ajax({
+            type:"get",
+            url: "@Url.Action("Reschedule","Home")",
+            data : { id : id, isAjax : true },
+            success: function(resp)
+            {
+                //console.log(resp);
+                $("#Reschedulebody").html(resp);
+                $("#Reschedule").modal('show');
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+    var resid;
+    $(document).on("click","#res",function(){
+        resid = $(this).attr('data-id');
+    });
+    $(document).on("click","#updatetime",function(){
+        var obj ={};
+        obj.id = parseInt(resid);
+        obj.ServiceStartDate = $("#resdate").val();
+        console.log(obj);
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("Updatetime","Home")',
+            dataType : "json",
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            async : true,
+            cache : false,
+            success: function(resp){
+                console.log(resp);
+                if(resp == true)
+                {
+                    alert(resp);
+                    $("Reschedule").modal('hide');
+                    location.reload();
+                }
+                else
+                {
+                    alert("something wrong");
+                }
+            },
+            error: function(err){
+                console.log(err);   
+                alert("error");
+            }
+        });
+    });
+    var cancelid;
+    $(document).on("click","#Cancel",function() {
+        cancelid = $(this).attr('data-id');
+        console.log(cancelid);
+    });
+    $(document).on("click","#cancelreq",function(){
+        var obj ={};
+        obj.id = parseInt(cancelid);
+        obj.Comments = $("#comments").val();
+        console.log(obj);
+         $.ajax({
+            url: '@Url.Action("DeleteReq", "Home")',
+            type: "post",
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            async : true,
+            cache : false,
+            data: JSON.stringify(obj),
+            success: function(resp){
+                alert(resp);
+                location.reload();
+            },
+            error: function(err){
+                console.log(err);   
+                alert(err);
+            }
+        });
+    });
+    $(document).on("click","#popup",function(){
+        var ServiceRequestId = parseInt($(this).attr('srid'));
+        console.log(ServiceRequestId);
+        $.ajax({
+            type:"get",
+            url: "@Url.Action("CDashbordPopup","Home")",
+            data : { id :  parseInt($(this).attr('srid'))},
+            success: function(resp)
+            {
+                //console.log(resp);
+                $("#popup-body").html(resp);
+                $("#exampleModal1").modal('show');
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }    
+        });
+    });
+    var srid,spid;
+    $(document).on("click",".Rate-SP",function(){
+        srid = parseInt($(this).attr('srid'));
+        spid = parseInt($(this).attr('spid'));
+        console.log(srid);
+        console.log(spid);
+    });
+    $(document).on("click",".Rate-SP",function(){
+            $.ajax({
+                url: '@Url.Action("RateSP", "home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    spid: parseInt($(this).attr("spid"))
+                },
+                success: function (res) {
+                    console.log(res);
+                    $("#ratesp .modal-body").html(res);
+                    $("#ratesp").modal('show');
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+    });
+    $(document).on("click","#rateSubmit",function(){
+        var rate = {};
+        rate.Ratings = parseInt(x);
+        rate.OnTimeArrival = parseInt(o);
+        rate.Friendly = parseInt(f);
+        rate.QualityOfService = parseInt(q);
+        rate.Comments = $("#comments").val();
+        rate.ServiceRequestId = parseInt(srid);
+        rate.RatingTo = parseInt($("#id").val()); 
+        console.log(rate);
+        $.ajax({
+            url: '@Url.Action("rate","Home")',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(rate),
+            success: function (res) {
+                console.log(res);
+                alert("rating done");
+                $("#ratesp").modal('hide');
+                $("#tabs-Service-History").load("@Url.Action("CustomerServiceHistory","Home")");
+            },
+            error: function (err) {
+                console.log(err);
+                console.log("Error");
+            }
+        });
+    });
+
+</script>
 
 
