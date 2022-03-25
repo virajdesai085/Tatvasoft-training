@@ -1,47 +1,10 @@
-﻿@model Helperland.Models.ContactU
+@model Helperland_projectContext.Models.ContactU
 <link rel="stylesheet" href="~/css/Contact.css" asp-append-version="true" />
-<!--BACKGROUND-->
-<div class="background" id="top">
+<partial name="~/Views/Shared/Header2.cshtml" />
 
-<!--NAVBAR-->	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-      <img src="~/image/logo-small.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Book now</a>
-        </li>
-        <li class="nav-item text-center color-border ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-<!-- Login Regestration  page-->  
-@Html.Partial("Login")
+<partial name="~/Views/Shared/Login.cshtml" />
+
+
 <!--MAIN BODY-->
   <img class="image-fluid price-image" src="~/image/contact.png">
 <section class="container body pt-3 d-flex flex-column align-items-center">
@@ -81,17 +44,37 @@
   <div>
     <h2 class="h2-title text-center pb-3">Get in touch with us</h2>
   </div>
-  <div class="container text-center">
-    <input asp-for="Name" class="first-name px-2 py-2 mb-2" type="text" placeholder="First Name"><input asp-for="Name" class="last-name px-2 py-2" type="text" placeholder="Last Name">
+<div class="container text-center">
+   <div class="d-flex flex-column align-items-center text-center">
+      <div class="d-flex flex-row">
+        <div>
+            <input asp-for="Name" class="first-name px-2 py-2" type="text" placeholder="First Name"><br>
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <input asp-for="Name" class="last-name px-2 py-2" type="text" placeholder="Last Name"><br>
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+      </div>
+      <div class="d-flex flex-row">
+          <div>
+              <span class="country-code">+49</span><input asp-for="PhoneNumber" class="mobile-number px-2 py-2 mb-2" type="number" placeholder="Mobile Number"><br>
+              <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+          </div>
+          <div>
+              <input asp-for="Email" class="last-name px-2 py-2" type="text" placeholder="Email Address"><br>
+              <span class="text-danger" asp-validation-for="Email"></span>
+          </div>
+      </div>
+  </div>
+</div>
+  <div class="container text-center mt-3">
+    <input asp-for="Subject" class="subject px-2 py-2" type="text" placeholder="Subject"><br>
+    <span class="text-danger" asp-validation-for="Subject"></span>
   </div>
   <div class="container text-center mt-3">
-    <span class="country-code">+49</span><input asp-for="PhoneNumber" class="mobile-number px-2 py-2 mb-2" type="number" placeholder="Mobile Number"><input asp-for="Email" class="last-name px-2 py-2" type="text" placeholder="Email Address">
-  </div>
-  <div class="container text-center mt-3">
-    <input asp-for="Subject" class="subject px-2 py-2" type="text" placeholder="Subject">
-  </div>
-  <div class="container text-center mt-3">
-    <input asp-for="Message" class="message px-2" type="text" placeholder="Mesaage">
+    <input asp-for="Message" class="message px-2" type="text" placeholder="Mesaage"><br>
+    <span class="text-danger" asp-validation-for="Message"></span>
   </div>
 
   <div class="container mt-3 text-left part-attachment justify-content-center align-items-center">
