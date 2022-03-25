@@ -1,47 +1,10 @@
-﻿@model Helperland.Models.User
+@model Helperland_projectContext.Models.User
 <link rel="stylesheet" href="~/css/Prices.css" asp-append-version="true" />
-<!--BACKGROUND-->
-<div class="background" id="top">
 
-<!--NAVBAR-->	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-      <img src="~/image/logo-small.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Book now</a>
-        </li>
-        <li class="nav-item text-center color-border ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-<!-- Login Regestration  page-->  
-@Html.Partial("Login")
+
+<partial name="~/Views/Shared/Header2.cshtml" />
+
+<partial name="~/Views/Shared/Login.cshtml" />
 
 @using (Html.BeginForm("CreateAccount" , "Home" ,FormMethod.Post))
 {
@@ -60,29 +23,35 @@
       <div class="modal-body">
         <div class="row mb-3">
           <div class="col">
-            <input asp-for="FirstName" type="text" class="form-control" placeholder="First name" aria-label="First name">
+            <input asp-for="FirstName" type="text" class="form-control" placeholder="First name" aria-label="First name"><br>
+            <span class="text-danger" asp-validation-for="FirstName"></span>
           </div>
           <div class="col">
-            <input asp-for="LastName" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input asp-for="LastName" type="text" class="form-control" placeholder="Last name" aria-label="Last name"><br>
+            <span class="text-danger" asp-validation-for="LastName"></span>
           </div>
         </div>
         <div class="row mb-3">
           <div class="col">
-            <input asp-for="Email" type="text" class="form-control" placeholder=" Email Address" aria-label="Email Address">
+            <input asp-for="Email" type="text" class="form-control" placeholder=" Email Address" aria-label="Email Address"><br>
+            <span class="text-danger" asp-validation-for="Email"></span>
           </div>
           <div class="col">
             <div class="input-group flex-nowrap">
               <span class="input-group-text ps-1 pe-1" id="addon-wrapping">+49</span>
               <input asp-for="Mobile" type="text" class="form-control ps-1" placeholder="Mobile Number" aria-label="Username" aria-describedby="addon-wrapping">
             </div>
+            <span class="text-danger" asp-validation-for="Mobile"></span>
           </div>
         </div> 
         <div class="row">
           <div class="col">
-            <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Password" aria-label="Password"><br>
+            <span class="text-danger" asp-validation-for="Password"></span>
           </div>
           <div class="col">
-            <input asp-for="Password" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password"><br>
+            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
           </div>
         </div> 
         <div class="mt-2 form-check">
