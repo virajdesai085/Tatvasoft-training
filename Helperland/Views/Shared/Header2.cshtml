@@ -1,73 +1,71 @@
-﻿@using Microsoft.AspNetCore.Http
-<!--BACKGROUND-->
-<div class="background" id="top">
-
+@using Microsoft.AspNetCore.Http
+<link rel="stylesheet" href="~/css/Header2.css" asp-append-version="true" />
 <!--NAVBAR-->	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-      <img src="~/image/logo-small.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-bg">
+
+  <div class="container-fluid ">
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home"><img src="~/image/logo-small.png"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item text-center color-border color ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="BookService" asp-controller="Home">Book now</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav d-flex ms-auto mb-2 mb-lg-0">
+        <li class="nav-item me-2">
+          <a class="nav-link hov ps-3 pe-3 text-light active1" aria-current="page" asp-action="BookService" asp-controller="Home">Book Now</a>
         </li>
-        <li class="nav-item text-center color-border ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
+        <li class="nav-item me-2">
+          <a class="nav-link hov ps-3 pe-3 text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
         </li>
-        <li class="nav-item text-center ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
+        <li class="nav-item me-2">
+          <a class="nav-link hov ps-3 pe-3 text-light" href="#">Warrenty</a>
         </li>
-        <li class="nav-item text-center ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
+        <li class="nav-item me-2">
+          <a class="nav-link hov ps-3 pe-3 text-light" href="#">Blog</a>
         </li>
-        <li class="nav-item text-center ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
-        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link hov ps-3 pe-3 text-light" asp-action="Contact" asp-controller="Home">Contact</a>
+        </li>	
         @if(Context.Session.GetString("User_id") != null)
         {
-            <li class="vertical-line none ms-xl-3 mt-2"></li>
-            <li class="nav-item text-center none ms-xl-3  mt-2 ">
-              <a class="nav-link" aria-current="page" href="#"><img src="~/image/icon-notification.png"></a>
+              <span class="line"></span>
+            <li class="nav-item">
+              <a class="nav-link ps-3 pe-3" href="#"><img src="~/image/icon-notification.png"></a>
             </li>
-            <li class="vertical-line none ms-xl-3 mt-2"></li>
-            <li class="nav-item text-center justify-content-center ms-xl-3 dropdown">
-              <a class="nav-link p-2 mt-2" aria-current="page" id="navbarDropdown" data-bs-toggle="dropdown" href="#"><img class="pe-1" src="~/image/account-profile-image.png"><img src="~/image/white-downarrow.png"></a>
-              <ul class="dropdown-menu text-xl-start text-center" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item bg-transparent" href="#">Welcome @Context.Session.GetString("UserName_Session")</a>
-                </li>
-                <li> <hr class="dropdown-divider"> </li>
-                <li>
-                  <a class="dropdown-item bg-transparent" asp-action="CustomerDashbord" asp-controller="Home">My Dashbord</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a>
-                </li>
-                <li>
-                  <a  class="dropdown-item" asp-action="Logout" asp-controller="Home" >Logout</a>
-                </li>
-              </ul>
+              <span class="line"></span>
+            <li class="nav-item">
+              <div class="dropdown pt-2 ">
+                <a class="justify-content-center align-items-center ms-xl-3" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img class="pe-1" src="~/image/account-profile-image.png"><img src="~/image/white-downarrow.png">
+                </a>
+                <ul class="dropdown-menu mt-3" aria-labelledby="dropdownMenuLink">
+                  <li class="dropdown-item d">Welcome @Context.Session.GetString("UserName_Session")</li>
+                  @if(Context.Session.GetInt32("typeid") == 1)
+                  {
+                      <li><a class="dropdown-item" asp-action="CustomerDashbord" asp-controller="Home">My Dashbord</a></li>
+                      <li><a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a></li>
+                  }
+                  else
+                  {
+                      <li><a class="dropdown-item" asp-action="ServiceProviderDashbord" asp-controller="Home">My Dashbord</a></li>
+                      <li><a class="dropdown-item" asp-action="ServiceProviderSettings" asp-controller="Home">My Settings</a></li>
+                  }
+                  <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Logout</a></li>
+                </ul>
+              </div>
             </li>
         }
         else
         {
-        <li class="nav-item text-center color-border color ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-3 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-        </li>
-
+            <li class="nav-item me-2">
+              <a class="nav-link hov ps-3 pe-3 active1 text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Log in</a>
+            </li>
+            <li class="nav-item me-2">
+              <a class="nav-link hov ps-3 pe-3 active1 text-light" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
+            </li>
         }
       </ul>
     </div>
   </div>
-</nav>
-</div>
 
- 
+</nav> 
