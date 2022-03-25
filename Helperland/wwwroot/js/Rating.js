@@ -1,5 +1,4 @@
 var o = 0, f = 0, q = 0;
-
 $(document).ready(function () {
     $("#o1").click(function () {
         $("#o1").css('color',"yellow");
@@ -25,10 +24,6 @@ $(document).ready(function () {
         $("#o1,#o2,#o3,#o4,#o5").css('color',"yellow");
         o = 5;
     });
-
-
-
-
     $("#f1").click(function () {
         $("#f1").attr('src', '~/image/yellow-star.png');
         $("#f2,#f3,#f4,#f5").css('color',"#EEEADE");
@@ -53,10 +48,6 @@ $(document).ready(function () {
         $("#f1,#f2,#f3,#f4,#f5").css('color',"yellow");
         f = 5;
     });
-
-
-
-
     $("#q1").click(function () {
         $("#q1").css('color',"yellow");
         $("#q2,#q3,#q4,#q5").css('color',"#EEEADE");
@@ -84,18 +75,9 @@ $(document).ready(function () {
 
     $(".rate").on('click', function () {
         var ratesp = (o + f + q) / 3;
-        //console.log(ratesp);
-
-
-        //console.log("p " + p);
-        //console.log("t" + t);
-        //console.log("s" + s);
         x = Math.floor(ratesp)
-        // console.log("math fllorr " + x);
         x = ratesp.toFixed(0);
-        //console.log("fixed value" + x);
         $("#rateavg").html(x);
-
         switch (x) {
             case '0':
                 $("#a1,#a2,#a3,#a4,#a5").css('color',"yellow");
@@ -119,11 +101,6 @@ $(document).ready(function () {
             case '5':
                 $("#a1,#a2,#a3,#a4,#a5").css('color',"yellow");
                 break;
-            default:
-                alert('Nobody Wins!');
         }
-
     })
-
-
 });
