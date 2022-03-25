@@ -1,4 +1,4 @@
-﻿@model Helperland.Models.User
+@model Helperland_projectContext.Models.User
 
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"> 
   <div class="modal-dialog modal-dialog-centered">
@@ -12,10 +12,10 @@
         {
             <form>
               <div class="mb-2">
-                <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" placeholder="Email id" aria-describedby="emailHelp">
-              </div>
+                <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" placeholder="Email id" aria-describedby="emailHelp"><br /><span class="text-danger" asp-validation-for="Email"></span>
+               </div>
               <div class="mb-2">
-                <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Password"><br><span class="text-danger" asp-validation-for="Password"></span>
               </div>
               <div class="mb-2 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -48,7 +48,7 @@
         {
             <form>
                <div class="mb-2">
-                 <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword2" placeholder="Email id">
+                 <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword2" placeholder="Email id"><br><span class="text-danger" asp-validation-for="Email"></span>
                </div>
                <button type="submit" class="Log-in w-100">Send</button>
             </form>  
