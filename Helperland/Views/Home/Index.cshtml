@@ -1,63 +1,16 @@
-﻿<link rel="stylesheet" href="~/css/Homepage.css" asp-append-version="true" />
-    <!--BACKGROUND-->
-    <div class="background" id="top">
+@{
+    ViewData["Title"] = "Home Page";
+}
 
-        <!--NAVBAR-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-                    <img src="~/image/big-logo.png" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item text-center active ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" href="#">Book a cleaner</a>
-                        </li>
-                        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices</a>
-                        </li>
-                        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" href="#">Our Guarantee  </a>
-                        </li>
-                        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact Us</a>
-                        </li>
-                        <li class="nav-item text-center active ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-                        </li>
-                        <li class="nav-item text-center active ms-xl-3  mt-xl-0 mt-2 ">
-                            <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-                        </li>
-                        <li class="text-center flex-column justify-content-center nav-item dropdown ms-xl-3 mt-xl-0 mt-2">
-                            <a class="nav-link p-2" href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="img-fluid" src="~/image/ic-flag.png" alt="flag" />
-                                <img class="img-fluid" src="~/image/white-downarrow.png" alt="" />
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item bg-transparent" href="#">
-                                        <img class="img-fluid" src="~/image/ic-flag.png" alt="flag" />US
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <img class="img-fluid" src="~/image/ic-flag.png" alt="flag" />AUS
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-       <!-- Login Regestration  page-->  
-          @Html.Partial("Login")
+<link rel="stylesheet" href="~/css/Homepage.css" asp-append-version="true" />
+
+ <!--BACKGROUND-->
+     
+<div class="background" id="top">
+
+<partial name="~/Views/Shared/Header1.cshtml" />
+ 
+<partial name="~/Views/Shared/Login.cshtml" />
         
 
         <!--PARAGRAPH SECTION-->
@@ -83,9 +36,9 @@
 
         <!--BUTTON SECTION-->
         <div class="justify-content-center container-fluid d-flex">
-            <div class="button mt-3" href="#">
+            <a class="button mt-3" asp-action="BookService" asp-controller="Home">
                 Let's Book a Cleaner
-            </div>
+            </a>
         </div>
         <!--7  IMAGES-->
 
