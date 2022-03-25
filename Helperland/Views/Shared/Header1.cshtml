@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http
 
         <!--NAVBAR-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -40,12 +40,16 @@
                                       <a class="dropdown-item bg-transparent" href="#">Welcome @Context.Session.GetString("UserName_Session")</a>
                                     </li>
                                     <li> <hr class="dropdown-divider"> </li>
-                                    <li>
-                                      <a class="dropdown-item bg-transparent" asp-action="CustomerDashbord" asp-controller="Home">My Dashbord</a>
-                                    </li>
-                                    <li>
-                                      <a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a>
-                                    </li>
+                                    @if(Context.Session.GetInt32("typeid") == 1)
+                                      {
+                                          <li><a class="dropdown-item" asp-action="CustomerDashbord" asp-controller="Home">My Dashbord</a></li>
+                                          <li><a class="dropdown-item" asp-action="CustomerSettings" asp-controller="Home">My Settings</a></li>
+                                      }
+                                      else
+                                      {
+                                          <li><a class="dropdown-item" asp-action="ServiceProviderDashbord" asp-controller="Home">My Dashbord</a></li>
+                                          <li><a class="dropdown-item" asp-action="ServiceProviderSettings" asp-controller="Home">My Settings</a></li>
+                                      }
                                     <li>
                                       <a  class="dropdown-item" asp-action="Logout" asp-controller="Home" >Logout</a>
                                     </li>
