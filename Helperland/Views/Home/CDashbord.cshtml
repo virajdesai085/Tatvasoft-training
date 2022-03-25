@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Helperland_projectContext.Models.ServiceRequest>
+
+
+<div class="d-flex justify-content-between pb-2">
+        <span class="text-1">Current Service Requests</span>
+        <button class="book-now ps-2 pe-2" asp-action="BookService">Book Now!</button>
+    </div>
+    <table class="table border-box align-middle">
+        <thead>
+        <tr>
+            <th>Service ID</th>
+            <th>Service Details</th>
+            <th>Service Provider</th>
+            <th><span class="ps-1">Payment</span></th>
+            <th><span class="ps-5">Actions</span></th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ( var item in Model)
+            {
+                <tr class="mb-sm-3 mt-sm-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    <td>565646</td>
+                    <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate <br><img class="me-2"src="~/image/clock.png">12:00-8:00</td>
+                    <td data-label="Service Provider"><div class="cap-star d-flex flex-wrap"><img class="cap me-2" src="~/image/cap.png"><div class="Service-Provider pb-0 d-flex flex-wrap">Lyum Watson<span class="star"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/yellow-star.png"><img src="~/image/white-star.png"></span>4</div></div></td>
+                    <td data-label="Payment"><span class="number-63">@item.TotalCost</span></td>
+                    <td><span><button class="reschedule p-1 m-1" data-bs-toggle="modal" data-bs-target="#Reschedule">Reschedule</button></span><span><button class="cancel p-1 m-1" data-bs-toggle="modal" data-bs-target="#can">Cancel</button></span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    

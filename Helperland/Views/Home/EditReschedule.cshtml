@@ -1,0 +1,50 @@
+﻿@model Helperland.Models.Editreschedule
+        <div>
+          <div class="d-flex flex-row">
+            <div class="w-100 me-2"> 
+              <label class="head">Date:</label><br>
+              <input type="date" asp-for="ServiceStartDate" id="date" class="mt-1 x w-100">
+            </div>
+            <div class="w-100 ms-2">
+              <label class="head">Time:</label><br>
+              <input type="time"  id="time" class="x mt-1 w-100">
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h6 class="head fw-bold">Service Address</h6>
+          <div class="d-flex flex-row">
+            <div class="w-100 me-2">
+              <div>
+                <label class="head">Street Name</label><br>
+                <input type="text" placeholder="Street Name" id="Street" asp-for="AddressLine2" class="w-100 x mt-1">
+              </div>
+              <input type="hidden" asp-for="ServiceRequestId" id="sid" />
+              <div class="mt-2">
+                <label class="head">Postal Code</label><br>
+                <input type="text" placeholder="Postal Code" id="postcode" asp-for="PostalCode" class="w-100 x mt-1">
+              </div>  
+            </div>
+            <div class="w-100 ms-2">
+              <div>
+                <label class="head">House Number</label><br>
+                <input type="text" placeholder="House Number" id="HouseNumber" asp-for="AddressLine1" class="w-100 x mt-1">
+              </div>
+              <div class="mt-2">
+                <label class="head">City</label><br>
+                <input type="text" placeholder="City" id="location" asp-for="City" class="w-100 x mt-1">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2"> 
+          <label class="head">Why do you want to reschedule service request?</label>
+          <input type="text" class="y mt-1 w-100" id="why" placeholder="Why do you want to reschedule service request?">
+        </div>
+        <div class="mt-2"> 
+          <label class="head">Call center EMP notes</label>
+          <input type="text" class="y mt-1 w-100" placeholder="Enter Notes">
+        </div>
+        <div class="mt-3">
+          <button type="button" id="updatesr" class="w-100 update">Update</button>
+        </div>

@@ -1,0 +1,40 @@
+﻿<link rel="stylesheet" href="~/css/SPmodel.css" />
+@{
+    Layout = null;
+}
+@using Helperland.Models
+@model SPupcomingServices
+
+        <div class="mb-0 pb-0">
+          <span class="row-head modal-time">@Model.ServiceStartDate</span><br>
+          <span class="row-head">Duration:</span> @Model.ServiceHours.
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Service-ID:</span> @Model.ServiceRequestId.<br>
+          <span class="row-head">Extras:</span> <br>
+          <span class="row-head">sum price:</span><span class="price">@Model.TotalCost  €</span><br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Customer Name:</span> @Model.FirstName @Model.LastName <br>
+          <span class="row-head">Address:</span>@Model.AddressLine1, @Model.AddressLine2, @Model.City, @Model.PostalCode<br>
+          <span class="row-head">Distance:</span> 10 kms. <br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Comments:</span>@Model.Comments<br>
+          @if(Model.HasPets == true)
+            {
+                <span>I've pets at home.</span>
+            }
+            else
+            {
+                <span><img class="me-2" src="~/image/not-included.png">I've no pets at home.</span>
+            }
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="mt-2">
+          <button class="cancel ps-2 pe-2 text-light" onclick="cancel(@Model.ServiceRequestId)">Cancel</button>
+          <button class="accept ps-2 pe-2 text-light" onclick="complete(@Model.ServiceRequestId)">Complete</button>
+        </div>

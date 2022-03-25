@@ -1,0 +1,65 @@
+﻿@using Helperland.Models
+@model IEnumerable<SPupcomingServices>
+   
+    <table class="table border-box">
+        <thead>
+        <tr>
+            <th>Service ID<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+            <th>Service date<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+            <th>Customer details<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+            <th>Distance<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+            <th><span class="actions remove"> Actions</span></th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+           {
+               <tr class="mb-sm-3 mt-sm-3">
+                    <td data-label="Service ID" id="popup" data-id="@item.ServiceRequestId">@item.ServiceRequestId</td>
+                    <td data-label="Service date" id="popup" data-id="@item.ServiceRequestId"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate.ToShortDateString()<br><img  class="me-2"src="~/image/clock.png">@item.ServiceStartDate.ToShortTimeString()</td>
+                    <td data-label="Customer details" id="popup" data-id="@item.ServiceRequestId">@item.FirstName @item.LastName<br> <img src="~/image/home-image.png">@item.AddressLine1, @item.AddressLine2, @item.City, @item.PostalCode</td>
+                    <td data-label="Distance" id="popup" data-id="@item.ServiceRequestId">15 kms</td>
+                    <td data-label-1="Actions"><a href="#" onclick="cancel(@item.ServiceRequestId)" class="cancel text-center">Cancel</a></td>
+                </tr>
+           }
+        </tbody>
+    </table>
+    <div class="mt-2">
+        <div class="d-flex w-100 end-div pt-1 ps-2 align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+            <span>Show</span>
+            <select class="form-select border-10 ms-1 me-1" id="inputGroupSelect03" aria-label="Example select with button addon">
+                <option selected>10</option>
+                <option value="1">20</option>
+                <option value="2">30</option>
+                <option value="3">40</option>
+            </select>
+            <span class="">Entries total recorded : 1</span>
+            </div> 
+            <nav aria-label="Page navigation example">
+            <ul class="pagination pt-2">
+                <li class="page-item page-link">
+                    <span aria-hidden="true">&laquo;</span>
+                </li>
+                <li class="page-item page-link">1</li>
+                <li class="page-item page-link">
+                    <span aria-hidden="true">&raquo;</span>
+                </li>
+            </ul>
+            </nav>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="upcoming" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header mb-0 pb-0">
+        <h5 class="modal-title" id="exampleModalLabel">Service Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mt-0 pt-0" id="upcoming-body">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Helperland_projectContext.Models.User
+        <div class="modal-header ms-0 ps-0">
+            <p class="modal-title" id="exampleModalLabel">
+              <div class="cap-star d-flex flex-wrap"><img class="cap me-2" src="~/image/cap.png">
+              <div class="Service-Provider pb-0 d-flex flex-wrap row-head">@Model.FirstName @Model.LastName <input type="hidden" id="id" asp-for="@Model.UserId"/><br>
+                <span class="star">
+                  <i class="fa fa-star" aria-hidden="true" id="a1"></i>
+                  <i class="fa fa-star" aria-hidden="true" id="a2"></i>
+                  <i class="fa fa-star" aria-hidden="true" id="a3"></i>
+                  <i class="fa fa-star" aria-hidden="true" id="a4"></i>
+                  <i class="fa fa-star" aria-hidden="true" id="a5"></i>
+                </span><label id="rateavg">0</label></div></div></p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        <span class="row-head">Rate Your Service Provider</span>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="row">
+          <div class="col-5">
+            <h6 class="pt-1">On time arrival</h6>
+            <h6 class="pt-2">Friendly</h6>
+            <h6 class="pt-2">Quality of service</h6>
+          </div>
+          <div class="col-7">
+            <div class="star ">
+            <i class="fa fa-star rate" aria-hidden="true" id="o1"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="o2"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="o3"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="o4"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="o5"></i>
+          </div><br>
+          <div class="star">
+            <i class="fa fa-star rate" aria-hidden="true" id="f1"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="f2"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="f3"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="f4"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="f5"></i>
+          </div><br>
+          <div class="star">
+            <i class="fa fa-star rate" aria-hidden="true" id="q1"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="q2"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="q3"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="q4"></i>
+            <i class="fa fa-star rate" aria-hidden="true" id="q5"></i>
+          </div>
+          </div>
+        </div>
+        <p class="row-head pt-2">Feedback on your service provider</p>
+        <input type="text" id="comments" class="rating-comment">
+        <button type="button" id="rateSubmit" class="save mt-2">Submit</button>
+
+        <script src="~/js/Rating.js"></script>

@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+@using Helperland.Models
+@model ServiceDPopup
+
+        <div class="justify-content-between">
+          <button type="button" class="btn-close x mt-0 pt-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          <span>Service Details</span><br>
+        </div>
+        <div class="mt-2 mb-0 pb-0">
+          <span class="row-head modal-time">@Model.ServiceStartDate</span><br>
+          <span class="row-head">Duration:</span> @Model.ServiceHours.
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Service-ID:</span> @Model.ServiceRequestId.<br>
+          <span class="row-head">Extras:</span><br>
+          <span class="row-head">Lump sum price:</span><span class="price">@Model.TotalCost</span><br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Address:</span> @Model.AddressLine1,@Model.AddressLine2,@Model.City<br>
+          <span class="row-head">Billing address:</span> @Model.AddressLine1,@Model.AddressLine2,@Model.City <br>
+          <span class="row-head">Phone:</span> +49 @Model.Mobile<br>
+          <span class="row-head">E-mail:</span> cust01@gmail.com <br>
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="modal-part-1">
+          <span class="row-head">Comments</span><br>
+          @if(Model.HasPets == true)
+            {
+                <span>I've pets at home.</span>
+            }
+            else
+            {
+                <span><img class="me-2" src="~/image/not-included.png">I've no pets at home.</span>
+            }
+        </div>
+        <div class="seprator-line mt-1 mb-1"></div>
+        <div class="mt-2">
+            <span><button class="reschedule p-1 m-1" id="res" @*data-id="@item.ServiceRequestId" onclick="reschedule(@item.ServiceRequestId)"*@>Reschedule</button></span><span><button class="cancel p-1 m-1"data-bs-toggle="modal" data-bs-target="#can" id="Cancel" @*data-id="@item.ServiceRequestId"*@ >Cancel</button></span>
+         </div>
+

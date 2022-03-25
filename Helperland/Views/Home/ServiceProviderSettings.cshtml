@@ -1,0 +1,282 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Helperland.Models
+@model ServiceProSettings
+<link rel="stylesheet" href="~/css/ServiceProviderDashbord.css" />
+
+<partial name="~/Views/Shared/Header2.cshtml" />
+
+<!--Welcome Sandip -->
+<section class="mb-5">
+  <div class="container-fluid welcome-sandip d-flex flex-column text-center justify-content-center align-items-center">
+    <h1 class="welcome">Welcome,<span class="sandip"> @Context.Session.GetString("UserName_Session")! </span></h1>
+  </div>     
+  <section class="container-fluid pt-3">
+    <div class=" row ">
+      <div class="col-lg-3 col-12 tabs-menu">
+        <nav class="navbar navbar-expand-lg position-sticky navbar-light p-0">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-list" aria-controls="navbar-list" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-light" id="navbar-list">
+            <ul class="nav tabs nav-pills flex-column text-center text-xl-start">
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-D" data-bs-toggle="pill" data-bs-target="#tabs-Dashbord" aria-controls="tabs-Dashbord" aria-selected="false">Dashbord</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-NSR" data-bs-toggle="pill" data-bs-target="#tabs-New-Sevice-Request" aria-controls="tabs-New-Sevice-Request" aria-selected="false">New Sevice Requests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-US" data-bs-toggle="pill" data-bs-target="#tabs-Upcoming-Services" aria-controls="tabs-Upcoming-Services" aria-selected="false">Upcoming Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SS" data-bs-toggle="pill" data-bs-target="#tabs-Service-Schedule" aria-controls="tabs-Service-Schedule" aria-selected="false">Service Schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SH" data-bs-toggle="pill" data-bs-target="#tabs-Service-History" aria-controls="tabs-Service-History" aria-selected="false">Service History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-MR" data-bs-toggle="pill" data-bs-target="#tabs-My-Ratings" aria-controls="tabs-My-Ratings" aria-selected="false">My Ratings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-BC" data-bs-toggle="pill" data-bs-target="#tabs-Block-Customer" aria-controls="tabs-Block-Customer" aria-selected="false">Block Customer</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-lg-9 col-12 ms-0 ps-0">
+        <div class="tab-content description-part">
+            <div class="a">
+                <ul class="nav nav-tabs nav-fill w-100" id="myTab" role="tablist">
+                  <li class="nav-item" >
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                  </li>
+                  <li class="nav-item" >
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                  </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="d-flex flex-row w-100 ">
+                  <div>
+                    <p>Account Status : Active</p>
+                    <span>Basic Details</span>
+                    <div class="saperator"></div>
+                  </div>
+                  <div>
+                    <img class="align-items-right" src="~/image/avatar-hat.png">
+                  </div>
+                </div>
+          @using (Html.BeginForm("ServiceProviderSettings" , "Home" , FormMethod.Post))
+        {
+                <div class="d-flex flex-xl-nowrap flex-row w-100 mt-3">
+                  <div class="d-flex flex-xl-nowrap flex-column w-100 pe-3">
+                    <span class="mb-3">
+                      <label class="form-label fw-bold settings-head">First Name</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="text" class="form-control" asp-for="Users.FirstName" placeholder="First Name">
+                      </div>
+                    </span>
+                    <span class="mb-3">
+                      <label class="form-label fw-bold settings-head">Mobile number</label>
+                      <div class="input-group col-sm-5 w-100">
+                        <span class="input-group-text" id="basic-addon1">+49</span>
+                        <input type="text" class="form-control" asp-for="Users.Mobile" placeholder="Mobile number">
+                      </div>
+                    </span>
+                  </div>
+                  <div class="d-flex flex-xl-nowrap flex-column w-100 pe-3">
+                    <span class="mb-3">
+                      <label class="form-label fw-bold settings-head">Last Name</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="text" class="form-control" asp-for="Users.LastName" placeholder="Last Name">
+                      </div>
+                    </span>
+                    <span>
+                      <label class="form-label fw-bold settings-head">Date Of birth</label>
+                      <div class="d-flex w-100">
+                        <span>
+                          <select class="form-select me-2  date">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                          </select>
+                        </span>
+                        <span>
+                          <select class="form-select me-1 ps-1 month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                          </select>
+                        </span>
+                        <span>
+                          <select class="form-select ms-1">
+                            <option value="1">2022</option>
+                            <option value="2">2021</option>
+                            <option value="3">2020</option>
+                            <option value="4">2019</option>
+                            <option value="5">2018</option>
+                            <option value="6">2017</option>
+                          </select>
+                        </span>
+                      </div>
+                    </span>
+                  </div>
+                  <div class="d-flex flex-xl-nowrap flex-column w-100">
+                    <span class="mb-3">
+                      <label class="form-label fw-bold settings-head">Email id</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="text" class="disabled form-control" asp-for="Users.Email" placeholder="Email id">
+                      </div>
+                    </span>
+                    <span>
+                      <label class="form-label fw-bold settings-head">Nationality</label>
+                      <select class="d-flex form-select w-100">
+                        <option value="1">Indian</option>
+                        <option value="2">Germany</option>
+                      </select>
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label fw-bold settings-head">Gender</label><br>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Users.Gender, "1",new{ @name="Gender"} )
+                            Male
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Users.Gender, "2",new{ @name="Gender"} )
+                            Female
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-2">
+                  <label class="form-label fw-bold settings-head">Select Avatar</label><br>
+                  <img class="m-2" src="~/image/avatar-car.png">
+                  <img class="m-2" src="~/image/avatar-female.png">
+                  <img class="m-2" src="~/image/avatar-hat.png">
+                  <img class="m-2" src="~/image/avatar-iron.png">
+                  <img class="m-2" src="~/image/avatar-male.png">
+                  <img class="m-2" src="~/image/avatar-ship.png">
+                </div>
+                <div>
+                  <p class="form-label fw-bold settings-head">My Address</p>
+                  <div class="saperator w-100"></div>
+                </div>
+                <div>
+                  <div class="d-flex flex-xl-nowrap flex-row w-100 mt-2">
+                    <div class="d-flex flex-xl-nowrap flex-column w-100">
+                        <span class="mb-2">
+                        <label class="form-label row-head">Street Name</label>
+                        <span class="col-sm-4 pe-3 w-100">
+                            <input type="text" class="form-control" asp-for="UserAddresses.AddressLine2" placeholder="Street Name">
+                        </span>
+                        </span><span class="mb-2">
+                        <label class="form-label row-head">City</label>
+                        <span class="col-sm-4 pe-3 w-100">
+                            <input type="text" class="form-control" asp-for="UserAddresses.City" placeholder="City">
+                        </span>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-xl-nowrap flex-column w-100">
+                        <span class="mb-2">
+                        <label class="form-label row-head">House Number</label>
+                        <span class="col-sm-4 pe-3 w-100">
+                            <input type="text" class="form-control" asp-for="UserAddresses.AddressLine1" placeholder="House Number">
+                        </span>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-xl-nowrap flex-column w-100">
+                        <span class="mb-2">
+                        <label class="form-label row-head">Postal code</label>
+                        <span class="col-sm-4 w-100">
+                            <input type="text" class="form-control" asp-for="UserAddresses.PostalCode" placeholder="Postal code">
+                        </span>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="save ps-2 pe-2">Save</button>
+                }
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="mt-3 col-sm-4">
+                      <label class="form-label fw-bold settings-head ">Old Password</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="password" class="form-control" asp-for="Users.Password" id="password1" placeholder="Current Password">
+                      </div>
+                    </div>
+                    <div class="mt-3 col-sm-4">
+                      <label class="form-label fw-bold settings-head ">New Password</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="password" class="form-control" id="password2" placeholder="New Password">
+                      </div>
+                    </div>
+                    <div class="mt-3 col-sm-4">
+                      <label class="form-label fw-bold settings-head ">Confirm Password</label>
+                      <div class="col-sm-5 w-100">
+                        <input type="password" class="form-control" id="password3" placeholder="Confirm Password">
+                      </div>
+                    </div>
+                    <button type="submit" onclick="updatepass()" class="book-now save mt-3 ps-2 pe-2">Save</button>
+              </div>
+              </div>
+            </div>
+
+            
+        </div>
+      </div>
+
+
+   
+  </section>
+</section>
+
+<script>
+    function updatepass(){
+        var obj = {};
+        obj.Password = $("#password1").val();
+        obj.NewPassword = $("#password2").val();
+        obj.ConfirmPassword = $("#password3").val();
+        console.log(obj);
+
+        if(obj.NewPassword != obj.ConfirmPassword)
+        {
+            alert("New Password & Confirm Password must be same.");
+        }
+        else if(obj.ConfirmPassword == obj.Password)
+        {
+            alert("New Password and Old password can not be same.");
+        }
+        else
+        {
+             $.ajax({
+                    url: '@Url.Action("changepassword","Home")',
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(obj),
+                    success: function (resp) {
+                        if (resp) {
+                            alert("password changed");
+                            location.reload();
+                        }
+                        else {
+                            alert("old pass does not match");
+                        }
+                    },
+                    error: function (err) {
+                        alert("Error occured while changing the password");
+                    }
+                });
+        }
+    }
+</script>
+

@@ -1,0 +1,57 @@
+﻿@using Helperland.Models
+@model IEnumerable<SPupcomingServices>
+    <div>
+        <span>Payment Status</span>
+        <select>
+        <option value="1">All</option>
+        <option value="1">Done</option>
+        <option value="1">Incomplete</option>
+        </select>
+        <button class="export">Export</button>
+    </div>
+    <div class="mt-2">
+        <table class="table border-box align-middle">
+        <thead>
+           <tr>
+                <th>Service ID<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                <th>Service date<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                <th>Customer details<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+           </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+           {
+               <tr class="mb-sm-3 mt-sm-3">
+                    <td data-label="Service ID">@item.ServiceRequestId</td>
+                    <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate.ToShortDateString() <br><img  class="me-2"src="~/image/clock.png">@item.ServiceStartDate.ToShortTimeString()</td>
+                    <td data-label="Customer details">@item.FirstName @item.LastName<br> <img src="~/image/home-image.png">@item.AddressLine1, @item.AddressLine2, @item.City ,@item.PostalCode<br>@item.Mobile</td>
+                </tr>
+           }
+        </tbody>
+        </table>
+    </div>
+    <div class="mt-2">
+        <div class="d-flex w-100 end-div pt-1 ps-2 align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+            <span>Show</span>
+            <select class="form-select border-10 ms-1 me-1" id="inputGroupSelect03" aria-label="Example select with button addon">
+                <option selected>10</option>
+                <option value="1">20</option>
+                <option value="2">30</option>
+                <option value="3">40</option>
+            </select>
+            <span class="">Entries total recorded : 1</span>
+            </div> 
+            <nav aria-label="Page navigation example">
+            <ul class="pagination pt-2">
+                <li class="page-item page-link">
+                    <span aria-hidden="true">&laquo;</span>
+                </li>
+                <li class="page-item page-link">1</li>
+                <li class="page-item page-link">
+                    <span aria-hidden="true">&raquo;</span>
+                </li>
+            </ul>
+            </nav>
+        </div>
+    </div>

@@ -1,0 +1,226 @@
+﻿@using Microsoft.AspNetCore.Http
+<link rel="stylesheet" href="~/css/ServiceProviderDashbord.css" />
+
+<partial name="~/Views/Shared/Header2.cshtml" />
+
+<!--Welcome Sandip -->
+<section class="mb-5">
+  <div class="container-fluid welcome-sandip d-flex flex-column text-center justify-content-center align-items-center">
+    <h1 class="welcome">Welcome,<span class="sandip"> Sandip! </span></h1>
+  </div>     
+  <section class="container-fluid pt-3">
+    <div class=" row ">
+      <div class="col-lg-3 col-12 tabs-menu">
+        <nav class="navbar navbar-expand-lg navbar-light position-sticky p-0">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-list" aria-controls="navbar-list" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-light" id="navbar-list">
+            <ul class="nav tabs nav-pills flex-column text-center text-xl-start">
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-D" data-bs-toggle="pill" data-bs-target="#tabs-Dashbord" aria-controls="tabs-Dashbord" aria-selected="false">Dashbord</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-NSR" data-bs-toggle="pill" data-bs-target="#tabs-New-Sevice-Request" aria-controls="tabs-New-Sevice-Request" aria-selected="false">New Sevice Requests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-US" data-bs-toggle="pill" data-bs-target="#tabs-Upcoming-Services" aria-controls="tabs-Upcoming-Services" aria-selected="false">Upcoming Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SS" data-bs-toggle="pill" data-bs-target="#tabs-Service-Schedule" aria-controls="tabs-Service-Schedule" aria-selected="false">Service Schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SH" data-bs-toggle="pill" data-bs-target="#tabs-Service-History" aria-controls="tabs-Service-History" aria-selected="false">Service History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-MR" data-bs-toggle="pill" data-bs-target="#tabs-My-Ratings" aria-controls="tabs-My-Ratings" aria-selected="false">My Ratings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-BC" data-bs-toggle="pill" data-bs-target="#tabs-Block-Customer" aria-controls="tabs-Block-Customer" aria-selected="false">Block Customer</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-lg-9 col-12">
+        <div class="tab-content description-part">
+          <div class="tab-pane active show fade accordian-collapse collapse" id="tabs-Dashbord" aria-labelledby="tabs-D">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+              vero?
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-New-Sevice-Request" aria-labelledby="tabs-NSR">
+            
+
+          </div>  
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Upcoming-Services" aria-labelledby="tabs-US">
+            
+
+          </div>
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-Schedule" aria-labelledby="tabs-SS">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+            vero?
+          </div> 
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Service-History" aria-labelledby="tabs-SH">
+          </div>  
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-My-Ratings" aria-labelledby="tabs-MR">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam temporibus, illum consectetur deserunt impedit totam necessitatibus ratione quos obcaecati facilis suscipit,molestiae at aperiam debitis sed similique doloribus tempora numquam ut quibusdam officiis quis dolore quam. Porro et enim
+            vero?
+          </div> 
+          <div class="tab-pane fade accordian-collapse collapse" id="tabs-Block-Customer" aria-labelledby="tabs-BC">
+          </div>   
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<script>
+    $(document).on("click","#tabs-NSR",function(){
+        $("#tabs-New-Sevice-Request").load('@Url.Action("SPNewServiceRequests","Home")')
+    });
+    $(document).on("click","#tabs-US",function(){
+        $("#tabs-Upcoming-Services").load('@Url.Action("SPupcomingServices","Home")')
+    });
+    $(document).on("click","#tabs-SH",function(){
+        $("#tabs-Service-History").load('@Url.Action("SPhistory","Home")')
+    });
+    $(document).on("click","#tabs-BC",function(){
+        $("#tabs-Block-Customer").load('@Url.Action("SPblockCustomer","Home")')
+    });
+    function Accept(id)
+    {
+        console.log(id);
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("AcceptService","Home")",
+            data : { id : id },
+            success: function(resp)
+            {
+                location.reload();
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+    $(document).on("click","#pop",function(){
+        var ServiceRequestId = parseInt($(this).attr('data-id'));
+        console.log(ServiceRequestId);
+        $.ajax({
+            type:"get",
+            url: "@Url.Action("SPnewServicePopup","Home")",
+            data : { id : ServiceRequestId },
+            success: function(resp)
+            {
+                //console.log(resp);
+                $("#new-body").html(resp);
+                $("#new").modal('show');
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }    
+        });
+    });
+    $(document).on("click","#popup",function(){
+        var ServiceRequestId = parseInt($(this).attr('data-id'));
+        console.log(ServiceRequestId);
+        $.ajax({
+            type:"get",
+            url: "@Url.Action("SPupComingServicePopup","Home")",
+            data : { id : ServiceRequestId },
+            success: function(resp)
+            {
+                //console.log(resp);
+                $("#upcoming-body").html(resp);
+                $("#upcoming").modal('show');
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }    
+        });
+    });
+    function complete(id)
+    {
+        console.log(id);
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("CompleteService","Home")",
+            data : { id : id },
+            success: function(resp)
+            {
+                $("#upcoming").modal('hide');
+                location.reload();
+
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+    function cancel(id)
+    {
+        console.log(id);
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("CancelService","Home")",
+            data : { id : id },
+            success: function(resp)
+            {
+                $("#upcoming").modal('hide');
+                location.reload();
+
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+    function block(id)
+    {
+        console.log(id);
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("block","Home")",
+            data : { id : id },
+            success: function(resp)
+            {
+                location.reload();
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+    function unblock(id)
+    {
+        console.log(id);
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("unblock","Home")",
+            data : { id : id },
+            success: function(resp)
+            {
+                location.reload();
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert("error");
+            }
+        });
+    }
+</script>
+
+

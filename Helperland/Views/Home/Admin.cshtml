@@ -1,0 +1,324 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<Helperland.Models.Custom>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://use.fontawesome.com/48380cf6ab.js"></script>
+<link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true"/> 
+<header>
+    <div class="navbar bar d-flex align-items-center">
+      <div class="d-flex align-items-center">   
+        <h1 class="h1-title ps-2">helperland</h1>
+      </div>
+      <div class="d-flex align-items-center pb-2 gap-3 pe-3">
+        @*<img src="~/image/admin-user.png" alt="">*@
+        <img src="~/image/account-profile-image.png" />
+        <div class="h2-title">@Context.Session.GetString("UserName_Session")</div>
+        <a asp-action="Logout" asp-controller="Home"><img src="~/image/logout.png"  alt=""></a>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <!--sidebar-->
+        <div class="col-lg-3 col-md-3 col-12 ps-0 pe-0">
+          <div class="card" id="navbarSupportedContent">
+            <ul class="nav tabs d-block text-center text-lg-start">
+              
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-SR" data-bs-toggle="pill" data-bs-target="#tabs-Service-Requests" aria-controls="tabs-Service-Requests" aria-selected="false">Service Requests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tabs-UM" data-bs-toggle="pill" data-bs-target="#tabs-User-Management" aria-controls="tabs-User-management" aria-selected="false" >User Management</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--sidebar-ends-->
+        <!--main-content-->  
+        <div class="col-lg-9 col-md-9 col-12 ps-3 pt-4 pe-3 main-body">
+          <div class="tab-content">
+            <div class="tab-pane fade accordian-collapse collapse" id="tabs-User-Management" aria-labelledby="tabs-UM">
+
+            </div>
+            <div class="tab-pane fade active show accordian-collapse collapse" id="tabs-Service-Requests" aria-labelledby="tabs-SR">
+              <div class="d-flex align-items-center fw-bold">Service-Requests</div>
+              <div class="d-flex flex-wrap align-items-center filters pt-3 pb-3 mt-2" id="adminForm">
+                <div class="service-id ps-2"> 
+                    <input class="form-control" type="number" id="id" placeholder="Service-ID">
+                </div>
+                <div class="customer ps-2">
+                  <input class="form-control" type="text" id="name" placeholder="Name"/>
+                </div>
+                <div class="service-provider ps-2">
+                  <input class="form-control" type="text" id="sp" placeholder="Provider Name" />
+                </div>
+                <div class="status ps-2">
+                  <select class="form-select" id="status" aria-label="Example select with button addon">
+                    <option selected value="">Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="New">New</option>
+                    <option value="Pending">Pending</option>
+                  </select>
+                </div>
+                <div class="ms-2 me-2 from-date align-items-center">
+                  <input type="date"/>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm search ms-2" id="search">Search</button>
+                <button type="button" class="btn btn-primary btn-sm clear ms-2" id="clear">Clear</button>
+              </div>
+              <div class="table-responsive">
+                <table id="mytable" class="table border-box align-middle mt-3 mb-0">
+                  <thead class="table-head">
+                    <tr>
+                      <th>Service ID<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                      <th>Service date<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                      <th>Customer details<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                      <th>Service provider<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                      <th>Status<img class="ms-2" src="~/image/up-down-arrow.png"></th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-body">
+                    @foreach (var item in Model)
+                   {
+                       <tr>
+                      <td data-label="Service ID">@item.ServiceRequestId</td>
+                      <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate.ToShortDateString()<br><img class="me-2"src="~/image/clock.png">@item.ServiceStartDate.ToShortTimeString()</td>
+                      <td data-label="Customer details">@item.FirstName @item.LastName<br> <img src="~/image/home-image.png">@item.AddressLine1, @item.AddressLine2,<br> @item.City, @item.PostalCode </td>
+                    @if(item.Status == 1)
+                    {
+                        <td data-label="Service Provider">
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.spFirstName @item.spLastName
+                                    <span class="star w-100">
+                                        @for(int i=0;i<5;i++)
+                                        {
+                                            if(i<(item.Ratings))
+                                            {
+                                                <i class="fa fa-star yellow" aria-hidden="true" ></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-star dull-white" aria-hidden="true" ></i>
+                                            }
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Status"><label class="completed">Completed</label></td>
+                    }
+                    else @if(item.Status == 2)
+                    {
+                        <td data-label="Service Provider">
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.spFirstName @item.spLastName
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Status"><label class="cancelled">Cancelled</label></td>
+                    }
+                    else @if(item.Status == 0)
+                    {
+                        <td data-label="Status"><label class="new">New</label></td>
+                    }
+                    else @if(item.Status == 4)
+                    {
+                        <td data-label="Service Provider">
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.spFirstName @item.spLastName
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Status"><label class="pending">Pending</label></td>
+                    }  
+                      <td data-label="Actions">
+                        <div class="btn-group dropstart">
+                          <a  class="dots-3 dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/image/3-dots.png">
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#" id="y" onclick="editres(@item.ServiceRequestId)">Edit & Reschedule</a></li>
+                            <li class="dropdown-item">Refund</li> 
+                            <li class="dropdown-item">Cancel</li> 
+                            <li class="dropdown-item">Change SP</li> 
+                            <li class="dropdown-item">Escalate History</li> 
+                            <li class="dropdown-item">Log</li> 
+                            <li class="dropdown-item">Download Invoice</li>
+                          </ul>
+                        </div>  
+                      </td>
+                    </tr>
+                   }
+                  </tbody>
+                </table>
+                <div class="d-flex w-100 d-none end-div pt-1 ps-2 align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <span>Show</span>
+                    <select class="form-select border-10 ms-1 me-1" id="inputGroupSelect03" aria-label="Example select with button addon">
+                      <option selected>10</option>
+                      <option value="1">20</option>
+                      <option value="2">30</option>
+                      <option value="3">40</option>
+                    </select>
+                    <span class="">Entries</span>
+                  </div> 
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination pt-2">
+                      <li class="page-item page-link">
+                          <span aria-hidden="true">&laquo;</span>
+                      </li>
+                      <li class="page-item page-link">1</li>
+                      <li class="page-item page-link">2</li>
+                      <li class="page-item page-link">3</li>
+                      <li class="page-item page-link">4</li>
+                      <li class="page-item page-link">5</li>
+                      <li class="page-item page-link">
+                          <span aria-hidden="true">&raquo;</span>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--main-content-ends-->
+      </div>
+    </div>
+  </section>
+
+
+
+
+  
+<!-- Modal -->
+<div class="modal fade" id="Editres" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Service Request</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="x">
+        
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+            var table = $('#mytable').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 5]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+
+            $(document).on('click', "#search", function () {
+                table.column(2).search($("#name").val()).draw();
+                table.column(0).search($("#id").val()).draw();
+                table.column(3).search($("#sp").val()).draw();
+                table.column(4).search($("#status option:selected").val()).draw();
+            });
+        });
+    $("#clear").on("click", function () {
+            $("#adminForm")[0].reset();
+            $("#search")[0].click();
+            return false;
+        });
+    $(document).on("click","#tabs-UM",function(){
+        $("#tabs-User-Management").load('@Url.Action("UserManagement","Home")')
+    });
+    function editres(Id)
+    {
+        console.log(Id);
+        $.ajax({
+            type:"get",
+            url: "@Url.Action("EditReschedule","Home")",
+            data : { id : Id},
+            success : function(resp)
+            {
+                console.log(resp);
+                $("#x").html(resp);
+                $("#Editres").modal('show');
+            },
+            error: function(err)
+            {
+                console.log(err);
+                alert(err);
+            }
+        });
+    }
+    $(document).on('click', '#updatesr', function () {
+            var add = {};
+            add.ServiceRequestId = parseInt($("#sid").val());
+            add.ServiceStartDate = $("#date").val() + $("#time").val();
+            add.AddressLine2 = $("#Street").val();
+            add.AddressLine1 = $("#HouseNumber").val();
+            add.PostalCode = $("#postcode").val();
+            add.City = $("#location").val();
+            add.Comments = $("#why").val();
+            console.log(add);
+            $.ajax({
+                url: '@Url.Action("Editreschedule", "Home")',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(add),
+                success: function (resp) {
+                    location.reload();
+                },
+                error: function (err) {
+                    alert("Error while inserting data");
+                }
+            });
+        });
+        function Deactivate(id)
+        {
+            console.log(id);
+            $.ajax({
+                type:"POST",
+                url: "@Url.Action("deactivate","Home")",
+                data : { id : id },
+                success: function(resp)
+                {
+                    $("#tabs-User-Management").load('@Url.Action("UserManagement","Home")');
+                },
+                error: function(err)
+                {
+                    console.log(err);
+                    alert("error");
+                }
+            });
+        }
+        function Activate(id)
+        {
+            console.log(id);
+            $.ajax({
+                type:"POST",
+                url: "@Url.Action("activate","Home")",
+                data : { id : id },
+                success: function(resp)
+                {
+                    $("#tabs-User-Management").load('@Url.Action("UserManagement","Home")');
+                },
+                error: function(err)
+                {
+                    console.log(err);
+                    alert("error");
+                }
+            });
+        }
+</script>

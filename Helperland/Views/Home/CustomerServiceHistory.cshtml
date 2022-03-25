@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Helperland.Models.Custom>
+
+    <table class="table border-box align-middle">
+        <thead>
+        <tr>
+            <th>Service Id</th>
+            <th>Service date</th>
+            <th>Service Provider</th>
+            <th>Payment</th>
+            <th><span class="ps-2 ms-1">Status</span></th>
+            <th><span class="m-l"> Rate SP</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach(var item in Model)
+        {
+            @if(item.Status != 0)
+            {
+               <tr class="mb-sm-3 mt-sm-3">
+                    <td data-label="Service-Id">@item.ServiceRequestId</td>
+                    <td data-label="Service date"><img class="me-2" src="~/image/calendar.png">@item.ServiceStartDate.ToShortDateString()<br><img class="me-2"src="~/image/clock.png">@item.ServiceStartDate.ToShortTimeString()</td>
+                    @if(item.Status == 1)
+                    {
+                        <td data-label="Service Provider" >
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.FirstName @item.LastName
+                                    <span class="star">
+                                        @for(int i=0;i<5;i++)
+                                        {
+                                            if(i < (item.Ratings))
+                                            {
+                                                <i class="fa fa-star yellow" aria-hidden="true" ></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-star" aria-hidden="true" ></i>
+                                            }
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Payment"><span class="€63 ms-lg-2 ps-lg-1">€</span><span class="number-63">@item.TotalCost</span></td>
+                        <td data-label="Status"><span class="green">Completed</span></td>
+                        <td data-label-1="Rate SP"><a srid="@item.ServiceRequestId" spid="@item.ServiceProviderId" class="Rate-SP text-center">Rate SP</a></td>
+                    }
+                    else @if(item.Status == 2)
+                    {
+                        <td data-label="Service Provider">
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.FirstName @item.LastName
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Payment"><span class="€63 ms-lg-2 ps-lg-1">€</span><span class="number-63">@item.TotalCost</span></td>
+                        <td data-label="Status"><span class="red">Cancelled</span></td>
+                    }
+                    else @if(item.Status == 3)
+                    {
+                        <td data-label="Service Provider">
+                            <div class="cap-star d-flex flex-wrap">
+                                <img class="cap me-2" src="~/image/cap.png">
+                                <div class="Service-Provider pb-0 d-flex flex-wrap">
+                                    @item.FirstName @item.LastName
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Payment"><span class="€63 ms-lg-2 ps-lg-1">€</span><span class="number-63">@item.TotalCost</span></td>
+                        <td data-label="Status"><span class="orange">Refund</span></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    }
+                </tr> 
+            }
+        }
+        
+        </tbody>
+    </table>
+<script src="~/js/Rating.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="ratesp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
