@@ -1,46 +1,8 @@
-﻿<link rel="stylesheet" href="~/css/About.css" asp-append-version="true" />
-<!--BACKGROUND-->
-<div class="background" id="top">
+<link rel="stylesheet" href="~/css/About.css" asp-append-version="true" />
 
-<!--NAVBAR-->	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-  <div class="container-fluid">
-    <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-      <img src="~/image/logo-small.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Book now</a>
-        </li>
-        <li class="nav-item text-center color-border ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Prices" asp-controller="Home">Prices & Services</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Warrenty  </a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" href="#">Blog</a>
-        </li>
-        <li class="nav-item text-center ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="Contact" asp-controller="Home">Contact</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        </li>
-        <li class="nav-item text-center color-border color ms-xl-3  mt-xl-0 mt-2 ">
-          <a class="nav-link text-light" aria-current="page" asp-action="ServiceProvider" asp-controller="Home">Become a Helper</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-<!-- Login Regestration  page-->  
-@Html.Partial("Login")
+<partial name="~/Views/Shared/Header2.cshtml" />
+
+<partial name="~/Views/Shared/Login.cshtml" />
 
 <!--MAIN BODY-->
   <img class="image-fluid about-image" src="~/image/about-banner.png">
